@@ -1,0 +1,12 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    gap: 10px;
+    padding-block: 10px;
+    padding-inline: 10px ;
+    border: 1px solid black;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+    height: 200px;
+}

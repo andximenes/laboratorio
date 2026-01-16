@@ -1,11 +1,4 @@
-.wrapper{
-    display: grid;
-    height: 300px;
-    width: 300px;
-
-    border: 1px solid black;
-    
-
+.div-style{
     & div:nth-child(1){
         background-color: blue;
         color: white;
@@ -26,8 +19,15 @@
         background-color:darkorchid;
         color: white;
     }
+    & div:nth-child(6){
+        background-color:darkgoldenrod;
+        color: white;
+    }
+
 
     & div{
+        display: grid;
         border: 1px solid black;
+        align-items: center;
     }
 }

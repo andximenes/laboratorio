@@ -1,0 +1,7 @@
+.centraliza{
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    padding-block: 20px;
+    padding-inline: 20px;
+}

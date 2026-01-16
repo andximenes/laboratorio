@@ -1,0 +1,25 @@
+html{
+    box-sizing: border-box;
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+.wrapper{
+    margin: 0 0 20px 0;
+    width: 500px;
+    height: 400px;
+    border: 1px solid black;
+
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(3, 100px);
+
+    align-content: space-around;
+    justify-content: space-between;
+}
+
+.box{
+    background-color: cornflowerblue;
+}

@@ -1,0 +1,38 @@
+.wrapper{
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 120px 120px 120px;
+    grid-template-areas: 
+        "...     header  header"
+        "div     main    main  " 
+        "footer  footer  footer"
+    ;
+    
+
+    header{
+        grid-area: header;
+        border: 1px solid black;
+        background-color: aqua;
+    }
+
+    div{
+        grid-area: div;
+        border: 1px solid black;
+        background-color: aquamarine;
+ 
+    }
+
+    main{
+        grid-area: main;
+        border: 1px solid black;
+        background-color: blue;
+        color: aliceblue;
+    }
+
+    footer{
+        grid-area: footer;
+        border: 1px solid black;
+        background-color: blueviolet;
+        color: aliceblue;
+    }
+}   
