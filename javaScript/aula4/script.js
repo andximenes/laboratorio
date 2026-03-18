@@ -1,6 +1,6 @@
 //OPERADOR TERNÁRIO
 
-age = 18
+let age = 18
 
 console.log( 
     age >= 18 //condição
@@ -10,7 +10,7 @@ console.log(
 
 
 //ESTRUTURA DE CONDIÇÃO IF
-hour = 6
+let hour = 6
 
 if(hour >= 6 ){
     console.log(
@@ -19,7 +19,7 @@ if(hour >= 6 ){
 }
 
 //IF ELSE
-color = "red"
+let color = "red"
 
 if(color === "red"){
     console.log(color)
@@ -28,12 +28,30 @@ if(color === "red"){
 }
 
 //IF, ELSE IF
-amount = 500
-withdrawal = 700
+let amount = 500
+let withdrawal = 700
 
 if(withdrawal <= amount){
     amount -= withdrawal
     console.log(`Saque realizado! Saldo atual: R$${amount}`)
 }else if(withdrawal > amount){
     console.log(`Saldo insuficiente! saldo atual: R$${amount}`)
+}
+
+//SWITCH
+
+let option = 1
+
+switch(option){
+    case 1:
+        console.log("Consultar pedido")
+        break
+    case 2:
+        console.log("Falar com um atendente")
+        break
+    case 3:
+        console.log("Cancelar pedido")
+        break
+    default:
+        console.log("Opção inválida")
 }
