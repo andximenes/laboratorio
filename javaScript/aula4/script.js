@@ -10,7 +10,6 @@ console.log(
 
 
 //ESTRUTURA DE CONDIÇÃO IF
-
 hour = 6
 
 if(hour >= 6 ){
@@ -19,4 +18,12 @@ if(hour >= 6 ){
     )
 }
 
+//IF ELSE
+color = "red"
+
+if(color === "red"){
+    console.log(color)
+}else{
+    console.log("you wrong!")
+}
 
