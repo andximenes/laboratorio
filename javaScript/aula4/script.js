@@ -55,3 +55,6 @@ switch(option){
     default:
         console.log("Opção inválida")
 }
+
+//TRATAMENTO DE EXCEÇÕES - TRY CATCH finally, THROW NEW
+
