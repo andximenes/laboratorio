@@ -27,3 +27,13 @@ if(color === "red"){
     console.log("you wrong!")
 }
 
+//IF, ELSE IF
+amount = 500
+withdrawal = 700
+
+if(withdrawal <= amount){
+    amount -= withdrawal
+    console.log(`Saque realizado! Saldo atual: R$${amount}`)
+}else if(withdrawal > amount){
+    console.log(`Saldo insuficiente! saldo atual: R$${amount}`)
+}
