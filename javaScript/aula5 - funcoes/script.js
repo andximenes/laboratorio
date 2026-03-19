@@ -6,6 +6,8 @@ function greetings(){
 
 greetings()
 */
+
+
 //------------------------------------------------------------
 //Parameter and argument
 /*
@@ -21,6 +23,8 @@ function name(userName){
 
  sum(37, 9)
 */
+
+
 //------------------------------------------------------------
 //Return values
 /*
@@ -34,5 +38,20 @@ console.log(showResult)
 //ou
 console.log(sum(2, 5))
 */
-//------------------------------------------------------------
 
+
+//------------------------------------------------------------
+//Function scope
+
+showMessage("Hello, I'm using the showMessage function ")
+
+function showMessage(message){
+    console.log(message)
+    endLine()
+
+    function endLine(){
+        console.log("------")
+    }
+}
+
+showMessage("I used it!")
