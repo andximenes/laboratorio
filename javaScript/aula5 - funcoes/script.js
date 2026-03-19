@@ -43,15 +43,37 @@ console.log(sum(2, 5))
 //------------------------------------------------------------
 //Function scope
 
-showMessage("Hello, I'm using the showMessage function ")
+// showMessage("Hello, I'm using the showMessage function ")
 
-function showMessage(message){
-    console.log(message)
-    endLine()
+// function showMessage(message){
+//     console.log(message)
+//     endLine()
 
-    function endLine(){
-        console.log("------")
-    }
+//     function endLine(){
+//         console.log("------")
+//     }
+// }
+
+// showMessage("I used it!")
+
+//------------------------------------------------------------
+//Comentário de documentação
+
+/**
+ * Authenticates the users
+ * 
+ * @param {String} email user email.
+ * @param {String} password more than 6 characters.
+ * @returns {Number} user id.
+ */
+
+function singIn(email, password){
+    // fluxo de automação do usuário
+
+    return 7
 }
 
-showMessage("I used it!")
+console.log(
+    singIn("andre1ximenes@gmail.com", "1234567")
+)
+
