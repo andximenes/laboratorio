@@ -81,15 +81,36 @@ console.log(sum(2, 5))
 //Anonymous function
 
 //without param
-let greetings1 = function(){
-    console.log("Hello my friend!")
+// let greetings1 = function(){
+//     console.log("Hello my friend!")
+// }
+
+// console.log(greetings1())
+
+// // with param
+// let greetins2 = function(name){
+//     console.log(`My name is ${name}`)
+// }
+
+// console.log(greetins2("André"))
+
+
+//------------------------------------------------------------
+// Arrow Function
+
+
+//Exemple 1
+let showMessage = () => {
+    console.log("I'm a Arrow function")
 }
 
-console.log(greetings1())
+showMessage()
 
-// with param
-let greetins2 = function(name){
-    console.log(`My name is ${name}`)
+//exemplo 2
+
+let showMessage2 = (userName, email) => {
+    console.log(`Hi, ${userName}, this is your email: ${email}`)
 }
 
-console.log(greetins2("André"))
+showMessage2("André", "andre'ximenes92@gmail.com")
+
