@@ -59,21 +59,37 @@ console.log(sum(2, 5))
 //------------------------------------------------------------
 //Comentário de documentação
 
-/**
- * Authenticates the users
- * 
- * @param {String} email user email.
- * @param {String} password more than 6 characters.
- * @returns {Number} user id.
- */
+// /**
+//  * Authenticates the users
+//  * 
+//  * @param {String} email user email.
+//  * @param {String} password more than 6 characters.
+//  * @returns {Number} user id.
+//  */
 
-function singIn(email, password){
-    // fluxo de automação do usuário
+// function singIn(email, password){
+//     // fluxo de automação do usuário
 
-    return 7
+//     return 7
+// }
+
+// console.log(
+//     singIn("andre1ximenes@gmail.com", "1234567")
+// )
+
+//------------------------------------------------------------
+//Anonymous function
+
+//without param
+let greetings1 = function(){
+    console.log("Hello my friend!")
 }
 
-console.log(
-    singIn("andre1ximenes@gmail.com", "1234567")
-)
+console.log(greetings1())
 
+// with param
+let greetins2 = function(name){
+    console.log(`My name is ${name}`)
+}
+
+console.log(greetins2("André"))
