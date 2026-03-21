@@ -54,7 +54,7 @@ console.log(content.innerHTML)//retorna o html como texto
 
 */
 
-let inputName = document.querySelector("#name")
+//let inputName = document.querySelector("#name")
 
 //adiciona a classe
 //inputName.classList.add("input-error")
@@ -72,3 +72,17 @@ let inputName = document.querySelector("#name")
 
 //let button = document.querySelector("button")
 //button.style.backgroundColor = "red"
+
+
+//CRIANDO ELEMENTO
+
+const ul = document.querySelector("ul") 
+const li = document.createElement("li")
+const span = document.createElement("span")
+
+ul.append(li)
+li.append(span)
+
+li.classList.add("guest")
+span.textContent = "André"
+
