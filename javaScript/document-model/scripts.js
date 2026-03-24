@@ -2,16 +2,30 @@
 //Visualizar conteúdo do document
 console.log(document)
 
+
+
+
 //Obter o title da página
 console.log(document.title)
+
+
+
 
 //Acessando elemento pelo ID
 
 const guest = document.getElementById("guest-2")
 console.log(guest)
 
+
+
+
+
 //mostra as propriedades do objeto
 console.dir(guest)
+
+
+
+
 
 //Acessando elemento pela classe
 let guestsByClass = document.getElementsByClassName("guest")
@@ -23,6 +37,9 @@ console.log(guestsByClass[0])
 //Acessando elementos pela tag
 let guestByTag = document.getElementsByTagName("li")
 console.log(guestByTag)
+
+
+
 
 //QUERY SELECTOR
 
@@ -36,23 +53,26 @@ console.log(getInfoByClass)
 
 */
 
+
+
+
 //Manipulando conteúdo
 //let content = document.querySelector("#guest-1 span")
 //console.log(content.textContent)
 //content.textContent = "André"
 //console.log(content)
 
-/*
-let content = document.querySelector("#guest-1")
-console.log(content.textContent)//retorna o conteúdo visível e o oculto.
+// let content = document.querySelector("#guest-1")
+// console.log(content.textContent)//retorna o conteúdo visível e o oculto.
 
-console.log(content.innerText)//retorna somente o conteúdo visível
+// console.log(content.innerText)//retorna somente o conteúdo visível
 
-console.log(content.innerHTML)//retorna o html como texto
+// console.log(content.innerHTML)//retorna o html como texto
+
+
+
 
 //Alterando estilo
-
-*/
 
 //let inputName = document.querySelector("#name")
 
@@ -74,15 +94,29 @@ console.log(content.innerHTML)//retorna o html como texto
 //button.style.backgroundColor = "red"
 
 
+
+
 //CRIANDO ELEMENTO
 
-const ul = document.querySelector("ul") 
-const li = document.createElement("li")
-const span = document.createElement("span")
+// const ul = document.querySelector("ul") 
+// const li = document.createElement("li")
+// const span = document.createElement("span")
 
-ul.append(li)
-li.append(span)
+// ul.append(li)
+// li.append(span)
 
-li.classList.add("guest")
-span.textContent = "André"
+// li.classList.add("guest")
+// span.textContent = "André"
 
+
+
+
+//Manipulando Atributos
+
+// const input = document.querySelector("input")
+
+//Atualiza um atributo
+// input.setAttribute("disabled", true)
+// input.setAttribute("type", "file")
+
+// input.removeAttribute("id") //Remove um atributo
