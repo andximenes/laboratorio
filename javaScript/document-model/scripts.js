@@ -150,7 +150,18 @@ console.log(getInfoByClass)
 
 
 //Eventos em um elemento específico
-const ul = document.querySelector("ul")
-ul.addEventListener("scroll", (event)=>{
-    console.log(event)
-})
+// const ul = document.querySelector("ul")
+// ul.addEventListener("scroll", (event)=>{
+//     console.log(event)
+// })
+
+
+
+
+//Eventos de formulário
+
+// const form = document.querySelector("form")
+// form.onsubmit = (event)=>{
+//     event.preventDefault()
+//     console.log("Você fez submit no formulário")
+// }
