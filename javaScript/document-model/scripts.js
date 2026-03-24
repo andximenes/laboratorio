@@ -111,6 +111,8 @@ console.log(getInfoByClass)
 
 
 
+
+
 //Manipulando Atributos
 
 // const input = document.querySelector("input")
@@ -120,3 +122,35 @@ console.log(getInfoByClass)
 // input.setAttribute("type", "file")
 
 // input.removeAttribute("id") //Remove um atributo
+
+
+
+
+
+
+
+//Eventos
+
+// window.addEventListener("load", ()=>{
+//     console.log("A página foi carregada!")
+// })
+
+// addEventListener("click", (event)=>{
+//     event.preventDefault()
+
+//     //todas as informações do evento
+//     // console.log(event)
+
+//     //retorna o elemento clicado
+//     // console.log(event.target)
+
+//     //retorna o text context do elemento clicado
+//     console.log(event.target.textContent)
+// })
+
+
+//Eventos em um elemento específico
+const ul = document.querySelector("ul")
+ul.addEventListener("scroll", (event)=>{
+    console.log(event)
+})
