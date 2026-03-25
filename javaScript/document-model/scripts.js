@@ -165,3 +165,26 @@ console.log(getInfoByClass)
 //     event.preventDefault()
 //     console.log("Você fez submit no formulário")
 // }
+
+
+
+
+//Eventos em input
+const input = document.querySelector("input")
+
+//keydown - quando uma tecla é precionada
+
+// input.addEventListener("keydown", (event)=>{
+//     console.log(event.key)
+// })
+
+//dispara quando o tipo da teclar caractere é preciosana (Letas, numeros, pontos etc)
+// input.addEventListener("keypress", (e)=>{
+//     console.log(e.key)
+// })
+
+
+//Quando o conteudo do input muda
+// input.onchange = ()=>{
+//     console.log("O input mudou!")
+// }
