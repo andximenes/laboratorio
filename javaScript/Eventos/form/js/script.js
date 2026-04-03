@@ -14,4 +14,8 @@ form.addEventListener("submit", (event) => {
     console.log(`Email: ${email.value}`)
 })
 
+fullName.addEventListener("input", () => {
+    console.log(fullName.value)
+})
+
 
