@@ -4,8 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>form - impedindo carregamento</title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Registration form</h1>
+    </header>
+    <main>
+        <section>
+            <form>
+                <div class="boxes">
+                    <label for="fullName">Full name:</label>
+                    <input type="text" name="fullName" id="fullName" required>
+                </div>
+                <div class="boxes">
+                    <label for="birth">Birth:</label>
+                    <input type="date" name="birth" id="birth">
+                </div>  
+                <div class="boxes">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" name="phone" id="phone" required>
+                </div>
+
+                <div class="boxes">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="submit">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="./js/script.js"></script>
 </body>
 </html>
