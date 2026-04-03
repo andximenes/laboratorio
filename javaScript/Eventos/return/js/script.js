@@ -32,7 +32,12 @@ function sum (a, b) {
 form.addEventListener("submit", (event) => {
     event.preventDefault()
 
-    sum(firstNumber.value, secondNumber.value)
+    try {
+        sum(firstNumber.value, secondNumber.value)
+    } catch (error) {
+        console.log("Erro ao tentar somar, tente novamente mais tarde")
+    }
+    
 })
 
 
