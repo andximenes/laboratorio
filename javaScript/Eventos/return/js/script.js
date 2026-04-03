@@ -31,12 +31,7 @@ function sum (a, b) {
 //Mostrando o resultado
 form.addEventListener("submit", (event) => {
     event.preventDefault()
-
-    try {
-        sum(firstNumber.value, secondNumber.value)
-    } catch (error) {
-        console.log("Erro ao tentar somar, tente novamente mais tarde")
-    }
+    sum(firstNumber.value, secondNumber.value)
     
 })
 
