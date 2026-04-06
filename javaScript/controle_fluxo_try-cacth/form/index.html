@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighbor App</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Neighbor 🏡</h1>
+            <p>Your information will be secure</p>
+        </header>
+        
+        <form action="">
+            <div class="info">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName">
+            </div>
+
+            <div class="info">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf">
+            </div>
+            
+            <div class="info">
+                <label for="apartament">Apt</label>
+                <input type="text" id="apartament" name="apt" placeholder="Apartament number">
+            </div>
+
+            <div class="radio">
+                <h3>Do you have any pets, such as a dog or cat?</h3>
+
+                <div class="options-radio">
+                    <div>
+                        <input type="radio" id="dog" name="options" value="Dog">
+                        <label for="dog">🐶</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="cat" name="options" value="Cat">
+                        <label class="emoji" for="cat">😺</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="noPets" name="options" value="No">
+                        <label for="noPets">❌</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        
+        <section id="resume" class="resumeInfo hidden"></section>
+    </main>
+
+    <script src="./script/script.js"></script>
+</body>
+</html>

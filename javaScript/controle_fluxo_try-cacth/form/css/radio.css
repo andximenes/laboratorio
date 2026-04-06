@@ -1,0 +1,37 @@
+.radio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    height: 25%;
+
+
+    & .options-radio {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100% ;
+
+        & input[type="radio"] {
+            cursor: pointer;
+        }
+
+        & div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 50px;
+            height: 30px;
+            
+            & .emoji {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                padding-bottom: 4px;
+            }
+        }
+    }
+
+}

@@ -3,8 +3,11 @@ const number1 = document.querySelector("#number1")
 const number2 = document.querySelector("#number2")
 const message = document.querySelector("#message")
 
+// Mostra a msg para o usuário
 function showMessage(text, type) {
-  message.textContent = text
+  message.textContent = text // o primeiro param vai receber algo como `Resultado: ${result}`
+
+  //fluxo, remove todas as classes depois aplica o tipo
   message.classList.remove("hidden", "success", "error")
   message.classList.add(type)
 }
@@ -34,6 +37,7 @@ form.addEventListener("submit", (event) => {
   try {
     const result = divide(number1.value, number2.value)
     showMessage(`Resultado: ${result}`, "success")
+    
   } catch (error) {
     showMessage(error.message, "error")
   }
