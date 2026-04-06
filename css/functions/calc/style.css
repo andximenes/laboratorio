@@ -1,0 +1,12 @@
+.calc{
+    width: calc(20% * 4);
+    height: 100px;
+    background-color: orange;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+}

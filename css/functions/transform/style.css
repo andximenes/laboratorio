@@ -1,0 +1,17 @@
+.transform {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    /* transform: translate(100px, 100px); Movimenta no Eixo X (horizontal) e Y (vertical) */
+
+    transform:  translate(100px, 100px) 
+                rotate(45deg) scale(2); /*scale dobra o tamanho*/
+    
+}
