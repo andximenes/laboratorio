@@ -25,7 +25,7 @@ form {
 
             &:focus{
                 outline: none;
-                border-color: rgb(216, 47, 103);;
+                border-color: #4a90e2;
             }
         }
 

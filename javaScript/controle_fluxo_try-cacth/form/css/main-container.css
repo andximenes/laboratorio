@@ -33,14 +33,26 @@
         width: 100%;
         height: 40%;
         border-radius: 10px;
-        background-color: #92eeb7;
+        background-color: #17c75e;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        padding: 20px;
+        color: rgb(0, 0, 0);
     }
 
     & .error {
         width: 100%;
-        height: 50%;
+        height: 20%;
         border-radius: 10px;
-        background-color: #ee9d92; 
+        background-color: #ff553e; 
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
     }
 }
 
