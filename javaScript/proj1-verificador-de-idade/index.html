@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age checker</title>
+
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Age checker</h1>
+        </header>
+
+        <form action="">
+            <!-- avatar -->
+            <section class="avatar">
+                <img src="./assets/image/adult.svg" alt="avatar" id="avatar">
+                <label for="avatar" id="labelAvatar" class="labelAvatar"></label>
+            </section>
+
+            <!-- pesoal information -->
+            <section class="info-container">
+                <div class="input-container">
+                    <label for="name">Name</label>
+                    <input type="text" id="name">
+                </div>  
+                <div class="input-container">
+                    <label for="age">Age</label>
+                    <input type="text" id="age">
+                </div> 
+            </section>
+
+            <div class="submit-button">
+                <button type="submit">Check</button>
+            </div>      
+
+            <!-- resume message -->
+            <section class="message hide"></section>
+        </form>
+    </main>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.message {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0 0 10px 10px;
+}
+
+.hide {
+    display: none;
+}
+
+.success {
+    background-color: aquamarine;
+}
+
+.error {
+    background-color: rgb(245, 112, 112);
+    color: white;
+}
