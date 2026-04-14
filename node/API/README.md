@@ -1,7 +1,7 @@
-#iniciando um projeto em node
+#INICIANDO UM PROJETO EM NODE
 `npm init -y `
 
-#Estrutura do projeto:
+#ESTRUTURA DO PROJETO
 
 API
 |___src
@@ -11,7 +11,7 @@ API
 |__README.md
 
 
-#importação de pacotes do node.js
+#IMPORTAÇÃO DOS PACOTES DO NODE.JS
 modo antigo: 
 `const http = require("http")`
 
@@ -23,8 +23,7 @@ Para o usar o importação do pacote no modelo atual, adicionamos uma nova propr
 `"type": module,` //propriedade "type" com o valor "module".
 
 
-#criando um servidor e passando o número da porta em que o servidor vai atender as requisições
-
+#CRIANDO UM SERVIDOR E PASSANDO O NÚMERO DA PORTA 
 //importando módulo
 `import http from "node:http"`
 
@@ -40,7 +39,21 @@ no temrinal execute: `node src/server.js`
 no nvegador: `localhost:3333`
 
 
-#node watch
+#NODE WATCH
 Para a cada mudança feita não termos que parar o servidor e executa-lo novamente usamos no temrinal a flag `--watch`:
 
 `node --watch src/server.js`
+
+
+#CRIANDO SCRIPTS PERSONALIZADOS
+
+No nosso arquivo `package.json`, dentro da propriedade "scripts", criamos o seguinte parâmetro:
+
+"scripts": {
+    "dev": "node --watch rsc/server.js"
+}
+
+para rodar usamos:
+`npm run dev` 
+
+`observação`: se mudarmos o script de `dev` para `start` podemos usar apenas `npm start`, pois ele é um padrão do node, mas o mesmo não acontece se fizermos npm dev. 
