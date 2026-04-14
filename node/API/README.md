@@ -57,3 +57,21 @@ para rodar usamos:
 `npm run dev` 
 
 `observação`: se mudarmos o script de `dev` para `start` podemos usar apenas `npm start`, pois ele é um padrão do node, mas o mesmo não acontece se fizermos npm dev. 
+
+
+#MÉTODOS HTTP
+
+`GET` - Leitura
+`POST` - Criação
+`PUT` - Atualizar
+`DELETE` - Deletar
+`PATCH` - Atualização parcial  
+
+#HTTP RESPONSE STATUS CODE
+Os códigos de status de resposta http indicam o status de uma solicitação. 
+
+1xx - Resp informativa
+2xx - Sucesso
+3xx - Redirecionamento
+4xx - Erro cliente
+5xx - Erro Servidor
