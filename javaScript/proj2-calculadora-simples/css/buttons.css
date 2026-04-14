@@ -1,0 +1,32 @@
+.operations {
+    display: flex;
+    width: 90%;
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+   
+
+    & button {
+        width: 20%;
+        height: 90%;
+        border: none;
+
+        cursor: pointer;
+    }
+
+    & #add {
+        background-color: greenyellow;
+    }
+
+    & #subtract {
+        background-color: orange;
+    }
+
+    & #multiply {
+        background-color: red;
+    }
+
+    & #divide {
+        background-color: blueviolet;
+    }
+}
