@@ -29,8 +29,8 @@ Para o usar o importação do pacote no modelo atual, adicionamos uma nova propr
 `import http from "node:http"`
 
 //servidor criado
-`const server = http.createServer((request, response) => {`
-    return response.end("Hello World🚀")
+`const server = http.createServer((req, res) => {`
+    return response.end("Hello World!")
 `})` 
 //porta utilizada
 `server.listen(3333)` //escutando a porta 3333
@@ -38,3 +38,9 @@ Para o usar o importação do pacote no modelo atual, adicionamos uma nova propr
 //testando
 no temrinal execute: `node src/server.js`
 no nvegador: `localhost:3333`
+
+
+#node watch
+Para a cada mudança feita não termos que parar o servidor e executa-lo novamente usamos no temrinal a flag `--watch`:
+
+`node --watch src/server.js`

@@ -1,9 +1,10 @@
+//importando módulo
 import http from "node:http"
 
-//servidor
+//Criando servidor
 const server = http.createServer((req, res) =>{
-    return res.end("Hello world!")
+    return res.end("Servidor alive!")
 })
 
-//porta
+//escutando a porta 3333
 server.listen(3333)
