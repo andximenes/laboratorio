@@ -28,17 +28,11 @@ function division(value1, value2) {
 }
 
 function blockTry() {
-  if (number1.value.trim() === "") {
-    result.textContent = "O campo 1 não pode estar vazio."
+  if (number1.value.trim() === "" || number2.value.trim() === "") {
+    result.textContent = "Os campos não podem estar vazio."
     return true
-  } else if (number2.value.trim() === "") {
-    result.textContent = "O campo 2 não pode estar vazio."
-    return true
-  } else if (isNaN(Number(number1.value))) {
-    result.textContent = "O campo 1 não pode ser letra."
-    return true
-  } else if (isNaN(Number(number2.value))) {
-    result.textContent = "O campo 2 não pode ser letra."
+  } else if (isNaN(Number(number1.value)) || isNaN(Number(number2.value))) {
+    result.textContent = "Os campos não podem conter letra."
     return true
   } else {
     return false
