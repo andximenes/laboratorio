@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white ;
+    padding: 20px;
+    border-radius: 12px;
+    
+    & .form-area {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        
+        & input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        & input {
+            flex: 1; /*Ocupa todo o espaço disponível flexível*/
+        }
+
+        & .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            & .item {
+                background: #dbeafe;
+                padding: 10px;
+                border-radius: 8px;
+            }
+        }
+    }
+}
