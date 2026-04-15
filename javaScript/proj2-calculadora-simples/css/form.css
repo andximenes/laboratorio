@@ -1,7 +1,7 @@
 form {
     display: flex;
     width: 300px;
-    height: 400px;
+    height: 350px;
     justify-content:space-around;
     align-items: center;
     flex-direction: column;
@@ -38,4 +38,21 @@ form {
             }
         }
     }
+
+    & .result {
+        display: flex;
+        width: 90%;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        
+        background-color: greenyellow;
+        color: rgb(0, 0, 0);
+
+    }
+
+    & .hide {
+        display: none;
+    }
+    
 }
