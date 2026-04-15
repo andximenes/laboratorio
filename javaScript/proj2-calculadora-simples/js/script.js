@@ -2,11 +2,13 @@ const number1 = document.getElementById("number1")
 const number2 = document.getElementById("number2")
 const result = document.getElementById("result")
 
+//buttons
 const add = document.getElementById("add")
 const subtract = document.getElementById("subtract")
 const multiply = document.getElementById("multiply")
 const divide = document.getElementById("divide")
 
+//functions
 function showResult() {
   result.classList.remove("hide")
 }
@@ -29,10 +31,10 @@ function division(value1, value2) {
 
 function blockTry() {
   if (number1.value.trim() === "" || number2.value.trim() === "") {
-    result.textContent = "Os campos não podem estar vazio."
+    result.textContent = "The fields must not be empty."
     return true
   } else if (isNaN(Number(number1.value)) || isNaN(Number(number2.value))) {
-    result.textContent = "Os campos não podem conter letra."
+    result.textContent = "The fields must not contain letters."
     return true
   } else {
     return false
@@ -41,25 +43,34 @@ function blockTry() {
 
 add.addEventListener("click", () => {
   showResult()
-  if (blockTry()) return
+  //se os campos estiverem errados, pare.
+  if (blockTry()) {
+    return // Esse return não é o mesmo return da função blockTry(). Ele pertence à função do evento de click () => {}, Ou seja, ele para a execução do clique.
+  }
   result.textContent = sum(number1.value, number2.value)
 })
 
 subtract.addEventListener("click", () => {
   showResult()
-  if (blockTry()) return
+  if (blockTry()) {
+    return
+  }
   result.textContent = subtraction(number1.value, number2.value)
 })
 
 multiply.addEventListener("click", () => {
   showResult()
-  if (blockTry()) return
+  if (blockTry()) {
+    return
+  }
   result.textContent = multiplication(number1.value, number2.value)
 })
 
 divide.addEventListener("click", () => {
   showResult()
-  if (blockTry()) return
+  if (blockTry()) {
+    return
+  }
 
   if (Number(number2.value) === 0) {
     result.textContent = "Não é possível dividir por zero."
