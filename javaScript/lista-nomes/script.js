@@ -13,10 +13,16 @@ function renderNames() {
     for(let i = 0; i < names.length; i++) {
         nameList.innerHTML += `
             <div class="item">
-                ${names[i]}
+                <span>${names[i]}</span>
+                <button class="remove-btn" onclick="removeName(${i})">Remove</button>
             </div>
         `
     }
+}
+
+function removeName(index) {
+    names.splice(index, 1)
+    renderNames()
 }
 
 addBtn.addEventListener("click", () => {

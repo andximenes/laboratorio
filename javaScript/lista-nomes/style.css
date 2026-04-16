@@ -38,6 +38,18 @@ body {
             background: #9ac0f2;
             padding: 10px;
             border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & .remove-btn {
+                border: none;
+                background: #ef4444;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 8px;
+                cursor:pointer;
+            }
         }
     }
 }
