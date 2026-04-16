@@ -17,22 +17,22 @@ function renderNames() {
             </div>
         `
     }
-
-    
 }
 
 addBtn.addEventListener("click", () => {
+    //valida que não tenha espaço no input e valida se o input está vazio
     const name = nameInput.value.trim()
-
     if (name === "") {
         return alert("O campo não pode ser vazio")
     }
 
-    //array recebe um item 
+    //array recebe (empurra) um item 
     names.push(name)
 
+    //renderiza o nome inserido 
     renderNames()
 
+    //limpa e dá foco no input
     nameInput.value = ""
     nameInput.focus()
 })
