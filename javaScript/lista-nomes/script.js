@@ -20,6 +20,7 @@ function renderNames() {
     }
 }
 
+//function remove name
 function removeName(index) {
     names.splice(index, 1)
     renderNames()
