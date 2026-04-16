@@ -5,7 +5,6 @@ const nameList = document.getElementById("nameList")
 //lista de nomes
 const names = []
 
-
 function renderNames() {
     //div nameList começa como vazio
     nameList.innerHTML = ""
