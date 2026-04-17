@@ -1,0 +1,32 @@
+.resume-employer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    
+    & .employer {
+        width: 100%;
+        background-color: rgb(121, 233, 167);
+        border-radius: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+
+        & .resume {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        & button {
+            background: rgb(248, 133, 133);
+            width: 30%;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+}

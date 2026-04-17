@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer registration</title>
+
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <header>
+        <h1>Employer registration</h1>
+    </header>
+    <main class="container">
+        <div class="general-info">
+            <div class="info">
+                <label for="fullName">Full name</label>
+                <input type="text" id="fullName">
+            </div>
+
+            <div class="info">
+                <label for="birthDay">Date of Birth</label>
+                <input type="date" id="birthDay">
+            </div>
+            <div class="info">
+                <label for="occupation">Occupation</label>
+                <input type="text" id="occupation">
+            </div>
+        </div>
+
+        <div class="gender">
+            <legend>Gender</legend>
+
+            <div class="gender-itens">
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="gender">Male</label>
+            </div>
+            <div class="gender-itens">
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="gender">Female</label>
+            </div>
+            <div class="gender-itens text">
+                <label for="gender">Other</label>
+                <input type="text" id="other" name="other">
+            </div>
+
+        </div> 
+
+        <div class="button-box">
+            <button type="button" id="addBtn">Add</button>
+        </div>
+   
+        <div class="resume-employer">
+            <div class="employer">
+                <div class="resume">
+                    <strong>Full name: </strong>
+                    <strong>Date of birth: </strong>
+                    <strong>Occupation: </strong>
+                    <strong>Gender: </strong>
+                </div>
+                <button>remove</button>
+            </div>
+
+        </div>
+
+        <script src="./js/script.js"></script>
+    </main>
+</body>
+</html>

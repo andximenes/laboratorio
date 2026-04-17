@@ -1,0 +1,90 @@
+.container {
+    width: 600px;
+    min-height: 250px;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    
+    & .general-info {
+        width: 100%;
+        height: 100px;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: space-between;
+        margin-bottom: 50px;
+
+        & .info {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            
+            & label {
+                width: 20%;
+            }
+
+            & input {
+                width: 80%;
+                height: 35px;
+                border-radius: 5px;
+                border: 1px solid grey;
+                padding: 0 20px;
+            }
+        }
+    }
+
+    & .gender {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        padding: 10px 0;
+
+        & legend {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+            background-color: rgb(15, 129, 206);
+        }
+        & .text {
+            display: flex;
+            width: 100%;
+            height: 35px;
+            align-items: center;
+            justify-content: space-between;
+
+            & input {
+                width: 80%;
+                height: 35px;
+                border-radius: 5px;
+                border: 1px solid grey;
+                padding: 0 20px;
+            }
+        }
+    }
+
+    & .button-box {
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & button {
+            width: 30%;
+            height: 50px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgb(15, 129, 206);
+            color: white;
+            cursor: pointer;
+            transition: .5s;
+
+            &:hover {
+                background-color: rgb(18, 197, 72);
+            }
+        }
+    }
+}
