@@ -16,8 +16,10 @@
 
         & .resume {
             display: flex;
+            width: 70%;
             flex-direction: column;
             gap: 5px;
+            
         }
 
         & button {
