@@ -1,0 +1,19 @@
+.container {
+    width: min(100% - 32px, 1120);
+    margin-inline: auto;
+
+    border: 1px solid grey;
+    
+
+}
+
+.box {
+    /*Essas duas propriedades juntas significa:  "Tente ocupar 100% da largura, ou seja, width: 100%, mas nunca ultrapasse 500px, ou seja, max-width"*/
+    
+    width: 100%;
+    max-width: 500px;
+
+
+    height: 100px;
+    background: tomato;
+}
