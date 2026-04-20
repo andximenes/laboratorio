@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    /*Pegue toda largura disponpivel e tire 32px. Esses 32px significam tira 16px do lado Direito e 16px do lado esquerdo*/
+
+    /*1120px é o valor máximo, ou seja, mesque que a tela seha enorme, a container nunca vai passar de 1120px*/
+
+    width: min(100% - 32px, 1120px);
+    margin-inline: auto; /*as laterais ficam automáticas*/
+}
+
+.py-24 {
+    padding-block: 24px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.btn {
+    border: none;
+    background: black;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/*Depois de 768px o card vira grid*/
+@media (min-width: 768px) {
+    .card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .card img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
