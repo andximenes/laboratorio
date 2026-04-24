@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
     res.send("servidor funcionando!")
 })
 
-//rota de tarefas
+//rota de tarefas - READ
 //Quando alguém acessar a rota tarefas, devolva o array de tarefas em formato JSON no navegdor
 app.get("/tarefas", (req, res) => {
     res.json(tarefas)
@@ -23,7 +23,7 @@ app.get("/sobre", (req, res) => {
     resp.send("página sobre")
 })
 
-//Rota para criar tarefa
+//Rota para criar tarefa - CREATE
 app.post("/tarefas", (req, res) => {
     const novaTarefa = {
         id: Date.now(), //gera um número no momento atual
@@ -37,7 +37,7 @@ app.post("/tarefas", (req, res) => {
     res.status(201).json(novaTarefa)
 })
 
-//rota para atualizar uma tarefa
+//rota para atualizar uma tarefa - UPDATE
 app.put("/tarefas/:id", (req, res) => {
     //pegando o id da rota. Aqui estamos pegando o valor que veio da URL. O valor vem em string mas transformamos em Number
     const idDaTarefa = Number(req.params.id)
@@ -61,6 +61,22 @@ app.put("/tarefas/:id", (req, res) => {
 
     //devolvendo a tarefa atualizada
     res.json(tarefa)
+})
+
+app.delete("/tarefas/:id", (req, res) => {
+    const idDaTarefa = Number(req.params.id)
+    const indiceDaTarefa = tarefas.findIndex((item) =>{
+        return item.id === idDaTarefa
+    })
+    
+    //O findIndex retorna -1 caso não encontre o indice
+    if(indiceDaTarefa === -1){
+        return res.status(404).json({mensagem: "Tarefa não encontrada"})
+    }
+
+    tarefas.splice(indiceDaTarefa, 1)
+
+    res.json({mensagem: "Tarefa excluída com sucesso!"})
 })
 
 //escutando a porta 3000
