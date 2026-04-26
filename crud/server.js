@@ -1,85 +1,111 @@
-//Importando o express
-const express = require("express") //carrega a biblioteca e guarda na const express
-const app = express() // a const app vira o nosso servidor usando a const express como função
+const express = require("express")
+const db = require("./db") //importando o arquivo db.js
+const app = express()
 
-//Recebe a requisição com o body em JSON, leia esse JSON e transforme em um objeto jS acessível em req.body, ou seja, p que o express.json() faz é preparar o conteúdo do body para conseguir acessalo com req.body.titulo, por exemplo.
 app.use(express.json())
 
-const tarefas = []
-
-//rota principal
-app.get("/", (req, res) => {
-    res.send("servidor funcionando!")
-})
-
-//rota de tarefas - READ
-//Quando alguém acessar a rota tarefas, devolva o array de tarefas em formato JSON no navegdor
-app.get("/tarefas", (req, res) => {
-    res.json(tarefas)
-})
-
-//rota sobre
-app.get("/sobre", (req, res) => {
-    resp.send("página sobre")
-})
-
-//Rota para criar tarefa - CREATE
+// CREATE
 app.post("/tarefas", (req, res) => {
-    const novaTarefa = {
-        id: Date.now(), //gera um número no momento atual
-        titulo: req.body.titulo, //pega o valor enviado no corpo da requisição
-        concluida: false //toda tarefa nasce como não conluída
-    }
+  const { titulo } = req.body // isso é uma desestruturação
 
-    //salva no array
-    tarefas.push(novaTarefa)
-
-    res.status(201).json(novaTarefa)
-})
-
-//rota para atualizar uma tarefa - UPDATE
-app.put("/tarefas/:id", (req, res) => {
-    //pegando o id da rota. Aqui estamos pegando o valor que veio da URL. O valor vem em string mas transformamos em Number
-    const idDaTarefa = Number(req.params.id)
-
-    //Procurando a tarefa no array
-    //o método find() procura um item dentro de um array. Ele retorna o item encontrado ou undefined, se não encontrar.
-    //Procure no array tarefas um item cujo id seja igual ao idDaTarefa. Se encontrar, guarda em tarefa
-    //se encontrar o item o valor que a const tarefa recebe é algo como :
-    //              id: 2, titulo: "Treinar", concluida: false
-    const tarefa = tarefas.find((item) => { 
-        return item.id === idDaTarefa
-    })
-
-    //Verifica se não encontrou
-    if (!tarefa) {
-        return res.status(404).json({mensagem: "Tarefa não encontrada"})
-    }
-
-    //atualiza a propriedade da tarefa encontrada para true
-    tarefa.concluida = true
-
-    //devolvendo a tarefa atualizada
-    res.json(tarefa)
-})
-
-app.delete("/tarefas/:id", (req, res) => {
-    const idDaTarefa = Number(req.params.id)
-    const indiceDaTarefa = tarefas.findIndex((item) =>{
-        return item.id === idDaTarefa
-    })
+  db.run(
+    //SQL
+    `INSERT INTO tarefas (
+        titulo, concluida 
+    ) VALUES (
+        ?, ?
+    )`, 
+    //ARRAY QUE SUBSTITUI OS VALORES DESCRITOS NO SQL "VALUES (?, ?)"
+    //O PRIMEIRO PARÂMETRO RECEB A REQUISIÇÃO NA CONST TITULO
+    //O SEGUNDO PARÂMETRO É REFERENTE AO BOLEANO 0 OU 1 FALSE OR TRUE
+    [titulo, 0],
     
-    //O findIndex retorna -1 caso não encontre o indice
-    if(indiceDaTarefa === -1){
-        return res.status(404).json({mensagem: "Tarefa não encontrada"})
+
+    //ESSA FUNÇÃO É EXECUTADA QUNADO O BD TERMINA A OPERAÇÃO SE DER ERRO O PARAMETRO ERRO RECEBE O VALOR DO ERRO SE DER CERTO O ERRO VEM VAZIO/NULL
+    function (erro) {
+      //TRATAMENTO DE ERRO COM IF
+      if (erro) {
+        return res.status(500).json({ mensagem: "Erro ao criar tarefa" })
+      }
+
+      //RESPOSTA DO SERVIDOR
+      res.status(201).json({
+        //lastId é propriedade disponibilizada pelo SQLite após um insert. Ela informa o id da última linha inserida.
+        //this, se refere ao contexto da função
+        id: this.lastID, 
+        titulo: titulo,
+        concluida: 0
+      })
     }
-
-    tarefas.splice(indiceDaTarefa, 1)
-
-    res.json({mensagem: "Tarefa excluída com sucesso!"})
+  )
 })
 
-//escutando a porta 3000
+// READ
+app.get("/tarefas", (req, res) => {
+  //all é um método que traz todos os resultados da consulta
+  //* significa "todas as colunas"
+  
+  db.all(`SELECT * FROM tarefas`, [], 
+    (erro, rows) => {
+        if (erro) {
+            return res.status(500).json({ mensagem: "Erro ao buscar tarefas" })
+        }
+
+        res.json(rows)
+    })
+})
+
+//UPDATE
+app.put("/tarefas/:id", (req, res) => {
+  const idDaTarefa = Number(req.params.id)
+
+  db.run(
+    `UPDATE tarefas SET concluida = 1 WHERE id = ?`, [idDaTarefa],
+    function (erro) {
+      if (erro) {
+        return res.status(500).json({ mensagem: "Erro ao atualizar tarefa" })
+      }
+      //this.changes = quantidade de linhas que o banco alterou
+      if (this.changes === 0) {
+        return res.status(404).json({ mensagem: "Tarefa não encontrada" })
+      }
+
+      db.get(
+        `SELECT * FROM tarefas WHERE id = ?`,
+        [idDaTarefa],
+        (erroBusca, row) => {
+          if (erroBusca) {
+            return res.status(500).json({ mensagem: "Erro ao buscar tarefa atualizada" })
+          }
+
+          res.json(row)
+        }
+      )
+    }
+  )
+})
+
+//DELETE
+app.delete("/tarefas/:id", (req, res) => {
+  const idDaTarefa = Number(req.params.id)
+
+  db.run(
+    `DELETE FROM tarefas WHERE id = ?`, [idDaTarefa],
+
+    function (erro) {
+      if (erro) {
+        return res.status(500).json({ mensagem: "Erro ao excluir tarefa" })
+      }
+      //this.changes = quantidade de linhas que o banco alterou
+      if (this.changes === 0) {
+        return res.status(404).json({ mensagem: "Tarefa não encontrada" })
+      }
+
+      res.json({ mensagem: "Tarefa excluída com sucesso" })
+    }
+  )
+})
+
 app.listen(3000, () => {
-    console.log("servidor rodando em http://localhost:3000")
+  console.log("Servidor rodando em http://localhost:3000")
 })

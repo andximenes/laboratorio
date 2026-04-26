@@ -11,3 +11,108 @@ Iniciando projeto
 
 #testar ser a rota está sendo executada
 No terminal: `node server.js`
+
+#instalando o pacote sqlite.Ele permite que o node se conecte com o sqlite e execute comandos SQL
+`npm install sqlite3`
+
+#Comandos SQL
+Criar tabela - `CREATE TABLE tarefas (...)`
+Inserir tarefa - `INSERT INTO tarefas (...)`
+Buscar tarefa - `SELECT * FROM tarefas`
+Atualizar tarefa - `UPDATE tarefas`
+Excluir tarefa - `DELETE FROM tabelas`
+
+----
+
+1 - JavaScript é a linguagem do backend
+2 - A biblioteca do SQLite no node é a ponte entre node e banco
+3 - SQL é a linguagem que fala com o banco
+
+----
+`VERSÃO PRIMÁRIA USANDO UM ARRAY PARA GUARDAR OS DADOS` 👇
+
+//Importando o express
+const express = require("express") //carrega a biblioteca e guarda na const express
+const app = express() // a const app vira o nosso servidor usando a const express como função
+
+//Recebe a requisição com o body em JSON, leia esse JSON e transforme em um objeto jS acessível em req.body, ou seja, p que o express.json() faz é preparar o conteúdo do body para conseguir acessalo com req.body.titulo, por exemplo.
+app.use(express.json())
+
+const tarefas = []
+
+//rota principal
+app.get("/", (req, res) => {
+    res.send("servidor funcionando!")
+})
+
+//rota de tarefas - READ
+//Quando alguém acessar a rota tarefas, devolva o array de tarefas em formato JSON no navegdor
+app.get("/tarefas", (req, res) => {
+    res.json(tarefas)
+})
+
+//rota sobre
+app.get("/sobre", (req, res) => {
+    resp.send("página sobre")
+})
+
+//Rota para criar tarefa - CREATE
+app.post("/tarefas", (req, res) => {
+    const novaTarefa = {
+        id: Date.now(), //gera um número no momento atual
+        titulo: req.body.titulo, //pega o valor enviado no corpo da requisição
+        concluida: false //toda tarefa nasce como não conluída
+    }
+
+    //salva no array
+    tarefas.push(novaTarefa)
+
+    res.status(201).json(novaTarefa)
+})
+
+//rota para atualizar uma tarefa - UPDATE
+app.put("/tarefas/:id", (req, res) => {
+    //pegando o id da rota. Aqui estamos pegando o valor que veio da URL. O valor vem em string mas transformamos em Number
+    const idDaTarefa = Number(req.params.id)
+
+    //Procurando a tarefa no array
+    //o método find() procura um item dentro de um array. Ele retorna o item encontrado ou undefined, se não encontrar.
+    //Procure no array tarefas um item cujo id seja igual ao idDaTarefa. Se encontrar, guarda em tarefa
+    //se encontrar o item o valor que a const tarefa recebe é algo como :
+    //              id: 2, titulo: "Treinar", concluida: false
+    const tarefa = tarefas.find((item) => { 
+        return item.id === idDaTarefa
+    })
+
+    //Verifica se não encontrou
+    if (!tarefa) {
+        return res.status(404).json({mensagem: "Tarefa não encontrada"})
+    }
+
+    //atualiza a propriedade da tarefa encontrada para true
+    tarefa.concluida = true
+
+    //devolvendo a tarefa atualizada
+    res.json(tarefa)
+})
+
+app.delete("/tarefas/:id", (req, res) => {
+    const idDaTarefa = Number(req.params.id)
+    const indiceDaTarefa = tarefas.findIndex((item) =>{
+        return item.id === idDaTarefa
+    })
+    
+    //O findIndex retorna -1 caso não encontre o indice
+    if(indiceDaTarefa === -1){
+        return res.status(404).json({mensagem: "Tarefa não encontrada"})
+    }
+
+    tarefas.splice(indiceDaTarefa, 1)
+
+    res.json({mensagem: "Tarefa excluída com sucesso!"})
+})
+
+//escutando a porta 3000
+app.listen(3000, () => {
+    console.log("servidor rodando em http://localhost:3000")
+})
