@@ -9,7 +9,7 @@ function criarTarefa(req, res) {
       mensagem: "O título da tarefa é obrigatório"
     })
   }
-
+  //
   db.run(
     `INSERT INTO tarefas (titulo, concluida) VALUES (?, ?)`,
     [titulo.trim(), 0],
@@ -28,81 +28,72 @@ function criarTarefa(req, res) {
 }
 
 function listarTarefas(req, res) {
-    const { concluida, titulo } = req.query
+  const { titulo, concluida, ordem, limite } = req.query
 
-    if (concluida !== undefined && concluida !== "0" && concluida !== "1") {
-        return res.status(400).json({
-            mensagem: "O filtro concluida deve ser 0 ou 1"
-        })
-    }
-
-    if (titulo !== undefined && titulo.trim() === "") {
-        return res.status(400).json({
-            mensagem: "O filtro titulo não pode ser vazio"
-        })
-    }
-
-    //Busca por concluida e pelo titulo ao mesmo tempo
-    if (concluida !== undefined && titulo !== undefined) {
-        return db.all(
-                    `SELECT * FROM tarefas WHERE concluida = ? AND titulo LIKE ?`,
-                    [concluida, `%${titulo.trim()}%`],
-                    (erro, rows) => {
-                        if (erro) {
-                        return res.status(500).json({
-                            mensagem: "Erro ao buscar tarefas"
-                        })
-                        }
-
-                        return res.json(rows)
-                    }
-                )
-    }
-
-    //Busca apenas por concluida
-    if (concluida !== undefined) {
-        return db.all(
-                    `SELECT * FROM tarefas WHERE concluida = ?`,
-                    [concluida],
-                    (erro, rows) => {
-                        if (erro) {
-                        return res.status(500).json({
-                            mensagem: "Erro ao buscar tarefas"
-                        })
-                        }
-
-                        return res.json(rows)
-                    }
-                )
-    }
-
-    //Busca apenas por titulo
-    if (titulo !== undefined) {
-        return db.all(
-        `SELECT * FROM tarefas WHERE titulo LIKE ?`,
-        [`%${titulo.trim()}%`],
-        (erro, rows) => {
-            if (erro) {
-            return res.status(500).json({
-                mensagem: "Erro ao buscar tarefas"
-            })
-            }
-
-            return res.json(rows)
-        }
-        )
-    }
-
-    //Busca sem filtros, ou seja, busca por todas as tarefas
-    db.all(`SELECT * FROM tarefas`, [], (erro, rows) => {
-        if (erro) {
-        return res.status(500).json({
-            mensagem: "Erro ao buscar tarefas"
-        })
-        }
-
-        res.json(rows)
+  // garante que o filtro titulo não seja vazio
+  if (titulo !== undefined && titulo.trim() === "") {
+    return res.status(400).json({
+      mensagem: "O filtro título não pode ser vazio"
     })
+  }
+
+  // garante que o filtro concluida seja 0 ou 1
+  if (concluida !== undefined && concluida !== "0" && concluida !== "1") {
+    return res.status(400).json({
+      mensagem: "O filtro concluida deve ser 0 ou 1"
+    })
+  }
+
+  // garante que ordem seja asc ou desc
+  if (ordem !== undefined && ordem !== "asc" && ordem !== "desc") {
+    return res.status(400).json({
+      mensagem: "O filtro ordem deve ser asc ou desc"
+    })
+  }
+
+  // garante que limite seja um número positivo
+  if (limite !== undefined && (isNaN(Number(limite)) || Number(limite) <= 0)) {
+    return res.status(400).json({
+      mensagem: "O filtro limite deve ser um número positivo"
+    })
+  }
+
+  let sql = `SELECT * FROM tarefas`
+  const parametros = []
+  const filtros = []
+
+  if (titulo !== undefined) {
+    filtros.push(`titulo LIKE ?`)
+    parametros.push(`%${titulo.trim()}%`)
+  }
+
+  if (concluida !== undefined) {
+    filtros.push(`concluida = ?`)
+    parametros.push(concluida)
+  }
+
+  if (filtros.length > 0) {
+    sql += ` WHERE ` + filtros.join(" AND ")
+  }
+
+  if (ordem !== undefined) {
+    sql += ` ORDER BY id ${ordem.toUpperCase()}`
+  }
+
+  if (limite !== undefined) {
+    sql += ` LIMIT ?`
+    parametros.push(Number(limite))
+  }
+
+  db.all(sql, parametros, (erro, rows) => {
+    if (erro) {
+      return res.status(500).json({
+        mensagem: "Erro ao buscar tarefas"
+      })
+    }
+
+    return res.json(rows)
+  })
 }
 
 function buscarTarefaPorId(req, res) {
