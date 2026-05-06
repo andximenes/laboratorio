@@ -2,26 +2,36 @@ const db = require("../db")
 
 function criarTarefa(req, res) {
   const { titulo } = req.body
-
-  //Validação dos dados
-  if (typeof titulo !== "string" || titulo.trim() === "") {
+  
+  //validação
+  if (typeof titulo !== "string") {
     return res.status(400).json({
-      mensagem: "O título da tarefa é obrigatório"
+      mensagem: "O título deve ser uma string"
     })
   }
-  //
-  db.run(
-    `INSERT INTO tarefas (titulo, concluida) VALUES (?, ?)`,
-    [titulo.trim(), 0],
-    function (erro) {
-      if (erro) {
-        return res.status(500).json({ mensagem: "Erro ao criar tarefa" })
-      }
+  
+  const tituloFormatado = titulo.trim()
 
+  if (tituloFormatado === "") {
+    return res.status(400).json({
+      mensagem: "O título não pode estar vazio"
+    })
+  }
+  
+  const concluida = 0
+  
+  db.run(
+    `INSERT INTO tarefas (titulo, concluida) VALUES (?, ?)`, [tituloFormatado, concluida],
+    function(erro) {
+      if(erro) {
+        return res.status(500).json({
+          mensagem: "Erro ao tentar criar a tarefa"
+        })
+      }
       res.status(201).json({
         id: this.lastID,
-        titulo: titulo.trim(),
-        concluida: 0
+        titulo: tituloFormatado,
+        concluida: concluida
       })
     }
   )
@@ -124,6 +134,7 @@ function atualizarTarefa(req, res) {
   const idDaTarefa = Number(req.params.id)
   const { titulo, concluida } = req.body
 
+  //verificações antes da atualização
   if (typeof titulo !== "string" || titulo.trim() === "") {
     return res.status(400).json({
       mensagem: "O título da tarefa é obrigatório"
@@ -136,6 +147,7 @@ function atualizarTarefa(req, res) {
     })
   }
 
+  //atualização
   db.run(
     `UPDATE tarefas SET titulo = ?, concluida = ? WHERE id = ?`,
     [titulo.trim(), concluida, idDaTarefa],
@@ -152,6 +164,7 @@ function atualizarTarefa(req, res) {
         })
       }
 
+      //mostra a tarefa atualizada
       db.get(
         `SELECT * FROM tarefas WHERE id = ?`,
         [idDaTarefa],

@@ -6,9 +6,15 @@ const app = express()
 
 app.use(express.json())
 
+app.get("/", (req, res) => {
+    res.json({
+        mensagem: "Bem-vindo à API de Tarefas! 🚀"
+    })
+})
+
 //Tudo que começa com "/tarefas" será tratado pelo tarefasRouter, que é importado do arquivo routes/tarefas.js. Isso permite organizar as rotas relacionadas às tarefas em um módulo separado, mantendo o código mais limpo e modularizado.
 app.use("/tarefas", tarefasRouter)
 
 app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000")
+    console.log("Servidor rodando na porta 3000 😺")
 })
