@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    width: 600px;
+    height: 600px;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    background-color:rgb(57, 179, 228);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    border-radius: 20px;
+
+    & .card {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+        
+    }    
+}
