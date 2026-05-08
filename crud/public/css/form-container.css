@@ -34,4 +34,50 @@
             }
         }
     }
+
+    & .tarefas {
+        width: 100%;
+        margin-top: 20px;
+        list-style: none;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        & .tarefas-item {
+            width: 100%;
+            background-color: white;
+            padding: 12px;
+            border-radius: 8px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        & .tarefa-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        & .tarefas-titulo {
+            font-size: 14px;
+        }
+
+        & .tarefas-acoes {
+            display: flex;
+            gap: 8px;
+
+            & button {
+                border: none;
+                padding: 8px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+        }
+
+    }
+
 }
