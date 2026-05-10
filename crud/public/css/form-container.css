@@ -44,7 +44,7 @@
         flex-direction: column;
         gap: 10px;
 
-        & .tarefas-item {
+        & .tarefa-item {
             width: 100%;
             background-color: white;
             padding: 12px;
@@ -61,11 +61,11 @@
             gap: 4px;
         }
 
-        & .tarefas-titulo {
+        & .tarefa-titulo {
             font-size: 14px;
         }
 
-        & .tarefas-acoes {
+        & .tarefa-acoes {
             display: flex;
             gap: 8px;
 
