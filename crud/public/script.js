@@ -12,8 +12,8 @@ function adicionarTarefasNaTela(tarefa) {
             <span class= "tarefa-status">${tarefa.concluida === 1 ? "Concluída" : "Pendente"}</span>
         </div>
         <div class= "tarefa-acoes">
-            <button onclick= "incluirTarfefa(${tarefa.id}, this)">Concluir</button>
-            <button onclick= "excluirTarefa(${tarefa.id}, this)">Excluir</button>
+            <button type="button" onclick="concluirTarefa(${tarefa.id}, this)">Concluir</button>
+            <button type="button" onclick="excluirTarefa(${tarefa.id}, this)">Excluir</button>
         </div>
     `
     listaTarefas.appendChild(item) //coloca a li que criamos dentro da ul (pai) para aparecer na tela
@@ -31,10 +31,12 @@ async function carregarTarefas() {
     })
 }
 
-//incluir tarefa
+//concluir tarefa
 async function concluirTarefa(id, botao) {
   const item = botao.closest("li")
   const titulo = item.querySelector(".tarefa-titulo").textContent
+
+  console.log("Título enviado:", titulo)
 
   const resposta = await fetch(`/tarefas/${id}`, {
     method: "PUT",
