@@ -32,28 +32,30 @@ async function carregarTarefas() {
 }
 
 //incluir tarefa
-async function incluirTarefa(id, botao) {
-    const item = botao.closest("li")
-    const titulo = item.querySelector(".tarefa-titulo").textContent
+async function concluirTarefa(id, botao) {
+  const item = botao.closest("li")
+  const titulo = item.querySelector(".tarefa-titulo").textContent
 
-    const resposta = await fetch(`/tarefa/${id}`, {
-        method: "PUT",
-        headers: {
-            "content-type": "application.json"
-        },
-        body: JSON.stringify({
-            titulo: titulo,
-            concluida: 1
-        })
+  const resposta = await fetch(`/tarefas/${id}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      titulo: titulo,
+      concluida: 1
     })
-    const tarefaAtualizada = await resposta.json()
+  })
 
-    if(!resposta.ok) {
-        alert(tarefaAtualizada.mensagem || "Erro ao tentar atualizar a tarefa")
-        return
-    }
-    const status = item.querySelector(".tarefa-status").textContent
-    status.textContent = "Concluida"
+  const tarefaAtualizada = await resposta.json()
+
+  if (!resposta.ok) {
+    alert(tarefaAtualizada.mensagem || "Erro ao concluir tarefa")
+    return
+  }
+
+  const status = item.querySelector(".tarefa-status")
+  status.textContent = "Concluída"
 }
 
 //exclui uma tarefa
