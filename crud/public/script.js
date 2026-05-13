@@ -79,24 +79,33 @@ formTarefa.addEventListener("submit", async (event) => {
 
     const titulo = inputTarefa.value
 
+    //“Faça uma requisição para /tarefas e espere a resposta. Quando a resposta chegar, guarde na variável resposta
     const resposta = await fetch("/tarefas", {
+<<<<<<< HEAD
         method: "POST", //servidor estou criando algo
+=======
+        //Use o método POST, porque estou enviando dados para criar uma nova tarefa.
+        method: "POST",
+        //Estou avisando ao servidor que o conteúdo que estou enviando no body está em formato JSON
+>>>>>>> e275ef781684ef4733817981724f52a537f3e682
         headers: {
             "content-type": "application/json" //estou enviando dados em formato JSON
         },
+        //Envie no corpo da requisição um JSON contendo o título da tarefa
         body: JSON.stringify({ 
             titulo: titulo //servidor esses são os dados da nova tarefa
         })
     })
 
-    const tarefaCriada = await resposta.json()
+    //abri o conteúdo da resposta e transformei em objeto JavaScript
+    const dado = await resposta.json()
 
     if (!resposta.ok) {
-        alert(tarefaCriada.mensagem || "Erro ao criar tarefa")
+        alert(dado.mensagem || "Erro ao criar tarefa")
         return
     }
-    
-    adicionarTarefasNaTela(tarefaCriada)
+
+    adicionarTarefasNaTela(dado)
     inputTarefa.value = ""
 
 })
