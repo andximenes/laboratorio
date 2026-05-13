@@ -2,7 +2,7 @@ const formTarefa = document.getElementById("formTarefa")
 const inputTarefa = document.getElementById("inputTarefa")
 const listaTarefas = document.getElementById("listaTarefas")
 
-//cria uma tarefa
+//mostra as tarefas na tela
 function adicionarTarefasNaTela(tarefa) {
     const item = document.createElement("li")
     item.classList.add("tarefa-item")
@@ -19,7 +19,7 @@ function adicionarTarefasNaTela(tarefa) {
     listaTarefas.appendChild(item) //coloca a li que criamos dentro da ul (pai) para aparecer na tela
 }
 
-//lê (mostra) as tarefas criadas
+//Lê as tarefas criadas
 async function carregarTarefas() {
     const resposta = await fetch("/tarefas") //vá até a rota /tarefas e espere a resposta da API. Quando chegar a resposta, armazene na variável resposta.
 
@@ -31,7 +31,7 @@ async function carregarTarefas() {
     })
 }
 
-//concluir tarefa
+//concluir/Atualizar tarefa
 async function concluirTarefa(id, botao) {
   const item = botao.closest("li")
   const titulo = item.querySelector(".tarefa-titulo").textContent
@@ -77,6 +77,7 @@ async function excluirTarefa(id, botao) {
     item.remove()
 }
 
+//criar uma tarefa
 formTarefa.addEventListener("submit", async (event) => {
     //impede a página de recaregar quando enviamos uma tarefa
     event.preventDefault()
