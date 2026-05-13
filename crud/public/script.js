@@ -81,7 +81,6 @@ formTarefa.addEventListener("submit", async (event) => {
 
     //“Faça uma requisição para /tarefas e espere a resposta. Quando a resposta chegar, guarde na variável resposta
     const resposta = await fetch("/tarefas", {
-        method: "POST", //servidor estou criando algo
         //Use o método POST, porque estou enviando dados para criar uma nova tarefa.
         method: "POST",
         //Estou avisando ao servidor que o conteúdo que estou enviando no body está em formato JSON
