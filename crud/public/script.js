@@ -12,7 +12,7 @@ function adicionarTarefasNaTela(tarefa) {
             <span class= "tarefa-status">${tarefa.concluida === 1 ? "Concluída" : "Pendente"}</span>
         </div>
         <div class= "tarefa-acoes">
-            <button>Concluir</button>
+            <button onclick= "incluirTarfefa(${tarefa.id}, this)">Concluir</button>
             <button onclick= "excluirTarefa(${tarefa.id}, this)">Excluir</button>
         </div>
     `
@@ -29,6 +29,31 @@ async function carregarTarefas() {
     tarefas.forEach((tarefa) => {
         adicionarTarefasNaTela(tarefa)
     })
+}
+
+//incluir tarefa
+async function incluirTarefa(id, botao) {
+    const item = botao.closest("li")
+    const titulo = item.querySelector(".tarefa-titulo").textContent
+
+    const resposta = await fetch(`/tarefa/${id}`, {
+        method: "PUT",
+        headers: {
+            "content-type": "application.json"
+        },
+        body: JSON.stringify({
+            titulo: titulo,
+            concluida: 1
+        })
+    })
+    const tarefaAtualizada = await resposta.json()
+
+    if(!resposta.ok) {
+        alert(tarefaAtualizada.mensagem || "Erro ao tentar atualizar a tarefa")
+        return
+    }
+    const status = item.querySelector(".tarefa-status").textContent
+    status.textContent = "Concluida"
 }
 
 //exclui uma tarefa
@@ -55,12 +80,12 @@ formTarefa.addEventListener("submit", async (event) => {
     const titulo = inputTarefa.value
 
     const resposta = await fetch("/tarefas", {
-        method: "POST",
+        method: "POST", //servidor estou criando algo
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json" //estou enviando dados em formato JSON
         },
         body: JSON.stringify({ 
-            titulo: titulo
+            titulo: titulo //servidor esses são os dados da nova tarefa
         })
     })
 
