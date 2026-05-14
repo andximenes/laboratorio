@@ -6,6 +6,11 @@ const listaTarefas = document.getElementById("listaTarefas")
 function adicionarTarefasNaTela(tarefa) {
     const item = document.createElement("li")
     item.classList.add("tarefa-item")
+
+    if(tarefa.concluida === 1) {
+        item.classList.add("concluida")
+    }
+
     item.innerHTML = `
         <div class="tarefa-info">
             <span class="tarefa-titulo">${tarefa.titulo}</span>
@@ -21,6 +26,8 @@ function adicionarTarefasNaTela(tarefa) {
 
 //Lê as tarefas criadas
 async function carregarTarefas() {
+    listaTarefas.innerHTML = ""
+
     const resposta = await fetch("/tarefas") //vá até a rota /tarefas e espere a resposta da API. Quando chegar a resposta, armazene na variável resposta.
 
     const tarefas = await resposta.json() //pegue o JSON que veio da API e transforme em dados JavaScript. Armazene esses dados na variável tarefas. Nossa API retorna um array de tarefas, então a variável tarefas vai conter esse array.
@@ -58,6 +65,8 @@ async function concluirTarefa(id, botao) {
 
   const status = item.querySelector(".tarefa-status")
   status.textContent = "Concluída"
+
+  item.classList.add("concluida")
 }
 
 //exclui uma tarefa

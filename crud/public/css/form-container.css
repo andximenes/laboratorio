@@ -53,6 +53,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            & .concluida {
+                opacity: 0.7;
+
+                & .tarefa-titulo {
+                    text-decoration: line-through;
+                }
+
+                & .tarefa-status {
+                    color: green;
+                    font-weight: bold;
+                }
+            }
         }
 
         & .tarefa-info {
