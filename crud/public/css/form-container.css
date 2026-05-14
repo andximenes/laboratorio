@@ -44,6 +44,10 @@
         flex-direction: column;
         gap: 10px;
 
+        max-height: 260px; /*Define uma altura máxima para a lista*/
+        overflow-y: auto; /*se passar da altura máxima, aparece rolagem vertical*/
+        padding-right: 6px; /*Dá um pequeno espaço para a barra de rolagem não ficar grudada nos cards*/
+
         & .tarefa-item {
             width: 100%;
             background-color: white;

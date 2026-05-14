@@ -31,6 +31,11 @@ async function carregarTarefas() {
 
         const resposta = await fetch("/tarefas") //vá até a rota /tarefas e espere a resposta da API. Quando chegar a resposta, armazene na variável resposta.
 
+        if(!resposta.ok) {
+            alert("erro ao carregar tarefas")
+            return
+        }
+
         const tarefas = await resposta.json() //pegue o JSON que veio da API e transforme em dados JavaScript. Armazene esses dados na variável tarefas. Nossa API retorna um array de tarefas, então a variável tarefas vai conter esse array.
 
         //para cada item dentro do array tarefas, pegue esse item, chame ele temporariamente de tarefa, e execute a função adicionarTarefasNaTela passando essa tarefa. Assim, cada tarefa do array vai ser adicionada na tela.
@@ -47,9 +52,7 @@ async function carregarTarefas() {
 async function concluirTarefa(id, botao) {
     try{
         const item = botao.closest("li")
-        const titulo = item.querySelector(".tarefa-titulo").textContent
-
-        console.log("Título enviado:", titulo)
+        const titulo = item.querySelector(".tarefa-titulo").textContent.trim()
 
         const resposta = await fetch(`/tarefas/${id}`, {
             method: "PUT",
