@@ -1,118 +1,178 @@
-Iniciando projeto
+# CRUD de Tarefas
 
-#Criar package.json
-`npm init -y`
+Aplicação simples de lista de tarefas com interface web, API em Node.js/Express e persistência em SQLite.
 
-#Instalando dependência (express para criação do servidor)
-`npm install express`
+## Visão geral
 
-#criando arquivo principal do servidor
-`server.js`
+O projeto permite:
 
-#testar ser a rota está sendo executada
-No terminal: `node server.js`
+- criar tarefas
+- listar tarefas
+- buscar uma tarefa por `id`
+- marcar uma tarefa como concluída
+- excluir tarefas
+- filtrar a listagem por título, status, ordenação e limite
 
-#instalando o pacote sqlite.Ele permite que o node se conecte com o sqlite e execute comandos SQL
-`npm install sqlite3`
+A interface web fica em `public/` e consome a API REST exposta pelo servidor Express.
 
-#Comandos SQL
-Criar tabela - `CREATE TABLE tarefas (...)`
-Inserir tarefa - `INSERT INTO tarefas (...)`
-Buscar tarefa - `SELECT * FROM tarefas`
-Atualizar tarefa - `UPDATE tarefas`
-Excluir tarefa - `DELETE FROM tabelas`
+## Tecnologias
 
-----
+- Node.js
+- Express
+- SQLite3
+- HTML, CSS e JavaScript
 
-1 - JavaScript é a linguagem do backend
-2 - A biblioteca do SQLite no node é a ponte entre node e banco
-3 - SQL é a linguagem que fala com o banco
+## Estrutura do projeto
 
-----
-`VERSÃO PRIMÁRIA USANDO UM ARRAY PARA GUARDAR OS DADOS` 👇
+```text
+crud/
+├── controllers/
+│   └── tarefasController.js
+├── public/
+│   ├── css/
+│   ├── index.html
+│   └── script.js
+├── routes/
+│   └── tarefas.js
+├── db.js
+├── server.js
+├── README.md
+├── database.sqlite
+├── package.json
+└── package-lock.json
+```
 
-//Importando o express
-const express = require("express") //carrega a biblioteca e guarda na const express
-const app = express() // a const app vira o nosso servidor usando a const express como função
+## Como executar
 
-//Recebe a requisição com o body em JSON, leia esse JSON e transforme em um objeto jS acessível em req.body, ou seja, p que o express.json() faz é preparar o conteúdo do body para conseguir acessalo com req.body.titulo, por exemplo.
-app.use(express.json())
+### 1. Instale as dependências
 
-const tarefas = []
+```bash
+npm install
+```
 
-//rota principal
-app.get("/", (req, res) => {
-    res.send("servidor funcionando!")
-})
+### 2. Inicie o servidor
 
-//rota de tarefas - READ
-//Quando alguém acessar a rota tarefas, devolva o array de tarefas em formato JSON no navegdor
-app.get("/tarefas", (req, res) => {
-    res.json(tarefas)
-})
+```bash
+node server.js
+```
 
-//rota sobre
-app.get("/sobre", (req, res) => {
-    resp.send("página sobre")
-})
+O servidor será iniciado em:
 
-//Rota para criar tarefa - CREATE
-app.post("/tarefas", (req, res) => {
-    const novaTarefa = {
-        id: Date.now(), //gera um número no momento atual
-        titulo: req.body.titulo, //pega o valor enviado no corpo da requisição
-        concluida: false //toda tarefa nasce como não conluída
-    }
+```text
+http://localhost:3000
+```
 
-    //salva no array
-    tarefas.push(novaTarefa)
+Ao subir a aplicação, o arquivo `db.js` garante a criação da tabela `tarefas` caso ela ainda não exista.
 
-    res.status(201).json(novaTarefa)
-})
+## Banco de dados
 
-//rota para atualizar uma tarefa - UPDATE
-app.put("/tarefas/:id", (req, res) => {
-    //pegando o id da rota. Aqui estamos pegando o valor que veio da URL. O valor vem em string mas transformamos em Number
-    const idDaTarefa = Number(req.params.id)
+O projeto usa um banco SQLite local no arquivo `database.sqlite`.
 
-    //Procurando a tarefa no array
-    //o método find() procura um item dentro de um array. Ele retorna o item encontrado ou undefined, se não encontrar.
-    //Procure no array tarefas um item cujo id seja igual ao idDaTarefa. Se encontrar, guarda em tarefa
-    //se encontrar o item o valor que a const tarefa recebe é algo como :
-    //              id: 2, titulo: "Treinar", concluida: false
-    const tarefa = tarefas.find((item) => { 
-        return item.id === idDaTarefa
-    })
+Estrutura da tabela `tarefas`:
 
-    //Verifica se não encontrou
-    if (!tarefa) {
-        return res.status(404).json({mensagem: "Tarefa não encontrada"})
-    }
+```sql
+CREATE TABLE IF NOT EXISTS tarefas (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  titulo TEXT NOT NULL,
+  concluida INTEGER NOT NULL DEFAULT 0
+);
+```
 
-    //atualiza a propriedade da tarefa encontrada para true
-    tarefa.concluida = true
+## API
 
-    //devolvendo a tarefa atualizada
-    res.json(tarefa)
-})
+Base URL:
 
-app.delete("/tarefas/:id", (req, res) => {
-    const idDaTarefa = Number(req.params.id)
-    const indiceDaTarefa = tarefas.findIndex((item) =>{
-        return item.id === idDaTarefa
-    })
-    
-    //O findIndex retorna -1 caso não encontre o indice
-    if(indiceDaTarefa === -1){
-        return res.status(404).json({mensagem: "Tarefa não encontrada"})
-    }
+```text
+http://localhost:3000/tarefas
+```
 
-    tarefas.splice(indiceDaTarefa, 1)
+### Criar tarefa
 
-    res.json({mensagem: "Tarefa excluída com sucesso!"})
-})
+`POST /tarefas`
 
-//escutando a porta 3000
-app.listen(3000, () => {
-    console.log("servidor rodando em http://localhost:3000")
-})
+Body:
+
+```json
+{
+  "titulo": "Estudar Express"
+}
+```
+
+Resposta `201`:
+
+```json
+{
+  "id": 1,
+  "titulo": "Estudar Express",
+  "concluida": 0
+}
+```
+
+### Listar tarefas
+
+`GET /tarefas`
+
+Parâmetros opcionais:
+
+- `titulo`: filtra por trecho do título
+- `concluida`: `0` ou `1`
+- `ordem`: `asc` ou `desc`
+- `limite`: número positivo
+
+Exemplo:
+
+```text
+GET /tarefas?titulo=estudar&concluida=0&ordem=desc&limite=5
+```
+
+### Buscar tarefa por ID
+
+`GET /tarefas/:id`
+
+Exemplo:
+
+```text
+GET /tarefas/1
+```
+
+### Atualizar tarefa
+
+`PUT /tarefas/:id`
+
+Body:
+
+```json
+{
+  "titulo": "Estudar Express e SQLite",
+  "concluida": 1
+}
+```
+
+### Excluir tarefa
+
+`DELETE /tarefas/:id`
+
+## Interface web
+
+Ao acessar `http://localhost:3000`, a página:
+
+- carrega as tarefas existentes
+- envia novas tarefas para a API
+- marca tarefas como concluídas
+- remove tarefas da lista
+
+## Validações atuais
+
+O backend já valida alguns cenários:
+
+- `titulo` deve ser string
+- `titulo` não pode ser vazio
+- `concluida` deve ser `0` ou `1`
+- `ordem` deve ser `asc` ou `desc`
+- `limite` deve ser um número positivo
+
+## Observações
+
+- O projeto ainda não possui script `start` no `package.json`
+- O script `test` atual é apenas um placeholder
+- O banco SQLite é local e persistido em arquivo
