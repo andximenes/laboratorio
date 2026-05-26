@@ -1,12 +1,14 @@
 const express = require("express")
 const router = express.Router()
 const db = require("../db")
+const controllerTasks = require("../controller/controllerTasks")
 
-//route test
-router.get("/", (req, res) => {
-    return res.status(200).json({
-        message: "Router connected successfully 📍🔥 "
-    })
-})
+
+//princiapl routers
+router.post("/", controllerTasks.createTask)
+router.get("/", controllerTasks.readAllTasks)
+router.get("/:id", controllerTasks.readTaskById)
+router.put("/:id", controllerTasks.updateTaskById)
+router.delete("/:id", controllerTasks.deleteTask)
 
 module.exports = router
