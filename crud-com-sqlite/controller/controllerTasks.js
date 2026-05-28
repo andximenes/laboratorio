@@ -1,6 +1,7 @@
 //get database
 const db = require("../db")
 
+
 //create tasks
 function createTask (req, res) {
     try {
@@ -49,20 +50,52 @@ function createTask (req, res) {
             })
         })
     } catch (error) {
-        return res.status(500).json({
-            message: "Internal server error",
-            error: error.message
-        })
+       return internalServerError(res, error)
     }
-}
+}       
 
-//read all tasks
-function readAllTasks (req, res) {
-    try{
-        const sql = `SELECT * FROM tasks`
+// read all tasks with optional filters
+function readAllTasks(req, res) {
+    try {
+        const { isCompleted, search } = req.query
 
-        db.all(sql, [], function(error, tasks) {
-            if(error) {
+        let sql = `SELECT * FROM tasks`
+        let params = []
+        let conditions = []
+
+        // isCompleted filter
+        if (isCompleted !== undefined) {
+            if (isCompleted !== "0" && isCompleted !== "1") {
+                return res.status(400).json({
+                    message: "isCompleted filter must be 0 or 1"
+                })
+            }
+
+            conditions.push("isCompleted = ?")
+            params.push(Number(isCompleted))
+        }
+
+        // search filter
+        if (search !== undefined) {
+            const formattedSearch = search.trim()
+
+            if (formattedSearch === "") {
+                return res.status(400).json({
+                    message: "Search cannot be empty"
+                })
+            }
+
+            conditions.push("title LIKE ?")
+            params.push(`%${formattedSearch}%`)
+        }
+
+        // apply filters if they exist
+        if (conditions.length > 0) {
+            sql += ` WHERE ${conditions.join(" AND ")}`
+        }
+
+        db.all(sql, params, function(error, tasks) {
+            if (error) {
                 return res.status(500).json({
                     message: "Internal error, tasks cannot be listed",
                     error: error.message
@@ -70,17 +103,13 @@ function readAllTasks (req, res) {
             }
 
             return res.status(200).json({
-                message: "Tasks listed successefully",
+                message: "Tasks listed successfully",
                 tasks
             })
         })
-        
-    } catch (error) {
-        return res.status(500).json({
-            message: "Internal error",
-            error: error.message
 
-        })
+    } catch (error) {
+        return internalServerError(res, error)
     }
 }
 
@@ -91,10 +120,7 @@ function readTaskById (req, res) {
         const formattedId = Number(id)
 
         if(Number.isNaN(formattedId)) {
-            return res.status(400).json({
-                message: "id must be a number"
-
-            })
+            return idMustBeNumber(res)
         }
 
         const sql = `SELECT * FROM tasks WHERE id = ?`
@@ -108,10 +134,7 @@ function readTaskById (req, res) {
             }
 
             if(!task) {
-                return res.status(500).json({
-                    message: "Task not found",
-                    
-                })
+                return taskNotFound(res)
             }
 
             return res.status(200).json({
@@ -120,10 +143,7 @@ function readTaskById (req, res) {
             })
         })
     } catch (error) {
-        return res.status(500).json({
-            message: "Internal error",
-            error: error.message
-        })
+        return internalServerError(res, error)
         
     }
 
@@ -140,9 +160,7 @@ function updateTaskById(req, res) {
         
         //id is a valid number?
         if(Number.isNaN(formattedId)) {
-            return res.status(400).json({
-                message: "id must be a number"
-            })
+            return idMustBeNumber(res)
         }
 
         //title validations
@@ -182,9 +200,7 @@ function updateTaskById(req, res) {
 
             //changes validation
             if (this.changes === 0) {
-                return res.status(404).json({
-                    message: "Task not found"
-                })
+                return taskNotFound(res)     
             }
 
             return res.status(200).json({
@@ -196,10 +212,7 @@ function updateTaskById(req, res) {
             })
         })
     } catch (error) {
-        return res.status(500).json({
-            message: "Internal error",
-            error: error.message
-        })
+        return internalServerError(res, error)
     }
 }
 
@@ -210,9 +223,7 @@ function deleteTask(req, res) {
         const formattedId = Number(id)
 
         if(Number.isNaN(formattedId)) {
-            return res.status(400).json({
-                message: "id must be a number"
-            })
+            return idMustBeNumber(res)
         }
 
         const sql = `DELETE FROM tasks WHERE id = ?`
@@ -226,9 +237,7 @@ function deleteTask(req, res) {
             }
 
             if(this.changes === 0) {
-                return res.status(404).json({
-                    message: "Task not found"
-                })
+                return taskNotFound(res)
             }
 
             return res.status(200).json({
@@ -236,12 +245,36 @@ function deleteTask(req, res) {
             })
         })
     } catch (error) {
-        return res.status(500).json({
-            message: "Internal server error",
-            error: error.message
-        })
+        return internalServerError(res, error)
     }
 }
+
+
+//recycle functions
+function idMustBeNumber(res) {
+    return res.status(400).json({
+        message: "id must be a number"
+
+    })
+}
+
+function taskNotFound(res) {
+    return res.status(500).json({
+        message: "Task not found",
+                    
+    })
+}
+
+function internalServerError(res, error) {
+    return res.status(500).json({
+        message: "Internal server error",
+        error: error.message
+    })
+}
+
+
+
+
 
 module.exports = {
     createTask,
@@ -250,3 +283,4 @@ module.exports = {
     updateTaskById,
     deleteTask
 }
+
