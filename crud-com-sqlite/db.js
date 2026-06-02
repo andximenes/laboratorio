@@ -17,7 +17,7 @@ db.serialize(() => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             isCompleted INTEGER NOT NULL DEFAULT 0,
-            createdAt TEXT NOT NULL CURRENT_TIMESTAMP
+            createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
         )`
     )
 })
