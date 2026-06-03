@@ -94,6 +94,8 @@ function readAllTasks(req, res) {
             sql += ` WHERE ${conditions.join(" AND ")}`
         }
 
+        sql += ` ORDER BY createdAt DESC`
+
         db.all(sql, params, function(error, tasks) {
             if (error) {
                 return res.status(500).json({
@@ -188,7 +190,7 @@ function updateTaskById(req, res) {
 
         //sql part
 
-        const sql = `UPDATE tasks SET title = ?, isCompleted = ? WHERE id = ?`
+        const sql = `UPDATE tasks SET title = ?, isCompleted = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`
 
         db.run(sql, [formattedTitle, isCompleted, formattedId], function(error) {
             if(error) {
