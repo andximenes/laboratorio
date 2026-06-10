@@ -4,6 +4,8 @@ const tasksRouter = require("./router/tasksRouter")
 
 app.use(express.json())
 
+app.use(express.static("public")) //liberando a pasta public para o navegador acessar
+
 // initial router test
 app.get("/", (req, res) => {
     return res.status(200).json({
