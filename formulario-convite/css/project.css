@@ -1,0 +1,7 @@
+.project {
+    background-color: black;
+    height: 768px;
+
+    display: flex;
+    padding: 20px;
+}
