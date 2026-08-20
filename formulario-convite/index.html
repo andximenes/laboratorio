@@ -1,27 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-
+    <!-- preconect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário convite</title>
-
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/index.css">
 
-    
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Leckerli+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="project">
         <aside class="brand">
             <header class="title">
-                <img class="logo-title" src="./assets/Logo.png" alt="logotipo">
+                <img class="logo-title" src="./assets/icons/Logo.png" alt="logotipo">
                 <div class="box-title">
                     <h1 class="text-title">Festivite</h1>
                     <p class="info-title">Crie um convite digital para o seu evento</p>
                 </div>
             </header>
         </aside>
+
+        <menu class="invite">
+            <h2 class="invite-heading">Crie seu convite</h2>
+
+            <form action="">
+                <!--Sobre o evento  -->
+                <section class="about-invite">
+                    <div class="about-container">
+                        <img class="icon-calendar" src="./assets/icons/calendar.png" alt="icone de calendário">
+                        <h3 class="title-about-invite">Sobre o evento</h3>
+                    </div>
+
+                    <div class="data-container">
+                        <div class="data-field-title box-pattern">
+                            <label for="title">Título</label>
+                            <input type="text" name="title" placeholder="Nome do evento">
+                        </div>
+
+                        <div class="data-field-calendar box-pattern">
+                            <div class="box-calendar column">
+                                <label for="start">Início</label>
+                                <input type="date" name="start">
+                            </div>
+                            <div class="box-calendar column">
+                                <label for="end">Fim</label>
+                                <input type="date" name="end">
+                            </div>
+                        </div>
+
+                        <div class="field-type">
+                            <div class="type">
+                                <span class="type-title">Tipo</span>
+
+                                <div class="type-options">
+
+                                    <input type="radio" id="presencial" name="type" value="presencial" checked>
+                                    <label for="presencial">
+                                        <img src="./assets/icons/building-2.png" alt="">
+                                        <span>Presencial</span>
+                                    </label>
+
+                                    <input type="radio" id="online" name="type" value="online">
+                                    <label for="online">
+                                        <img src="./assets/icons/video.png" alt="">
+                                        <span>Online</span>
+                                    </label>
+                                </div>
+                            </div>
+                        
+                            <div class="field-local box-pattern">
+                                <label for="event-local" class="type-title">Local</label>
+                                <input type="text" name="end" placeholder="Link ou endereço">
+                            </div>
+                        </div>
+
+                        <div class="description-container">
+                            <div class="discription">
+                                <label for="comment">Descrição</label>
+                                <textarea name="comment" placeholder="Escreva sobre os detalhes do evento"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </form>
+        </menu>
     </div>
 </body>
 </html>

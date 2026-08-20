@@ -1,0 +1,172 @@
+.about-invite {
+    
+    & .data-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+      
+        & .data-field-calendar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 16px;
+            
+
+            & .box-calendar {
+                width: 50%;
+
+            }
+        }
+
+        & .field-type {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 16px;
+
+            & .type {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+ 
+                font: var(--body-sm);
+ 
+                & .type-options {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    width: 100%;
+                    box-sizing: border-box;
+ 
+                    padding: 7px;
+                    border: 1px solid var(--input-stroke);
+                    border-radius: 8px;
+ 
+                    background-color: var(--input-base);
+                    color: var(--input-placeholder);
+                    font: var(--body-md);
+                    
+                    /* ESCONDE OS BOTÕES RADIO */
+                    & input[type="radio"] {
+                        position: absolute;
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+ 
+                    & label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 8px;
+ 
+                        padding: 10px 12px;
+                        border-radius: 5px;
+                        color: var(--input-placeholder);
+ 
+                        cursor: pointer;
+                        transition: background-color 0.2s ease, color 0.2s ease;
+ 
+                        & img {
+                            width: 16px;
+                            height: 16px;
+                            object-fit: contain;
+                        }
+                    }
+ 
+                    & input[type="radio"]:not(:checked) + label:hover {
+                        color: var(--text-heading);
+                    }
+ 
+                    & input[type="radio"]:checked + label {
+                        color: var(--text-heading);
+                        background-color: var(--shape-button);
+                    }
+ 
+                    & input[type="radio"]:focus-visible + label {
+                        outline: 2px solid var(--brand-light);
+                        outline-offset: 1px;
+                    }
+ 
+                    /* Troca de ícones: uma única técnica (content: url) para os dois botões */
+                    & #presencial:not(:checked) + label img {
+                        content: url("/assets/icons/building-2.png");
+                    }
+ 
+                    & #presencial:checked + label img {
+                        content: url("/assets/icons/building-blue.png");
+                    }
+ 
+                    & #online:not(:checked) + label img {
+                        content: url("/assets/icons/video.png");
+                    }
+ 
+                    & #online:checked + label img {
+                        content: url("/assets/icons/video-blue.png");
+                    }
+                }
+            }
+ 
+            & .field-local {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+ 
+                & input {
+                    width: 100%;
+                    min-width: 0;
+                    box-sizing: border-box;
+                }
+            }
+        }
+
+        & .description-container {
+            font: var(--body-md);
+            color: var(--text-heading);
+            width:560px ;
+            height: 167px;
+            
+            & .discription {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                & textarea {
+                    height: 136px;
+                    border-radius: 8px;
+                    background-color: var(--input-base);
+                    border: 1px solid var(--input-stroke);
+                    font: var(--body-md);
+                    color: var(--input-placeholder);
+                    padding: 16px;
+                }
+            }
+        }
+
+    }
+}
+
+
+/* padroes */
+
+.box-pattern {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font: var(--body-sm);
+    
+    & input {
+        padding: 16px;
+        border-radius: 8px;
+        background-color: var(--input-base);
+        border: 1px solid var(--input-stroke);
+        font: var(--body-md);
+        color: var(--input-placeholder);
+
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+

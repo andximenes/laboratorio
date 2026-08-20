@@ -2,6 +2,32 @@
     background-color: white;
     width: 400px;
     height: 728px;
-
     border-radius: 20px;
+    background-image: url("/assets/img/Background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    & .title {
+        margin: 32px;
+        
+        & .logo-title {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 16px;
+        }
+
+        & .box-title {
+            & .text-title {
+                font: var(--logo);
+                color: var(--pink);
+            }
+
+            & .info-title{
+                font: var(--body-md);
+                color: var(--text-heading);
+            }
+        }
+    }
+    
 }

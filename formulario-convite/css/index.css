@@ -1,3 +1,7 @@
 @import url("global.css");
 @import url("project.css");
 @import url("brand.css");
+@import url("invite.css");
+
+/* sections */
+@import url(./sections/about-invite.css);
