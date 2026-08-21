@@ -5,31 +5,21 @@
     height: 100vh;
     border-radius: 12px;
 
+    overflow-y: auto;
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* Internet Explorer e Edge antigo */
+    -ms-overflow-style: none;
+
+    /* Chrome, Edge e Safari */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
     & .invite-heading {
         color: var(--text-heading);
         font: var(--heading-md);
         margin-bottom: 40px;
-    }
-
-    & form {
-        & .about-invite {
-
-            & .about-container {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                margin-bottom: 40px;
-                & .icon-calendar {
-                    width: 24px;
-                    height: 24px;
-                }
-
-                & .title-about-invite {
-                    color: var(--text-heading);
-                    font: var(--heading-sm);
-                    
-                }
-            }
-        }
     }
 }

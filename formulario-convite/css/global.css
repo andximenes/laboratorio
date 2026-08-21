@@ -60,3 +60,55 @@
     --text-body: #C8CDD0;
     --text-heading: #F9F9F9;
 }
+
+htm,
+body {
+    overflow: hidden;
+     background-color: var(--shape-background);
+}
+
+.rotulo-name {
+    font: var(--body-sm);
+}
+
+.box-pattern {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font: var(--body-sm);
+    
+    & input {
+        padding: 16px;
+        border-radius: 8px;
+        background-color: var(--input-base);
+        border: 1px solid var(--input-stroke);
+        font: var(--body-md);
+        color: var(--input-placeholder);
+
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    
+    & .icon-pattern {
+        width: 24px;
+        height: 24px;
+    }
+
+    & .title-pattern {
+        color: var(--text-heading);
+        font: var(--heading-sm);
+        
+    }
+}

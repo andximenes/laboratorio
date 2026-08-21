@@ -36,9 +36,9 @@
             <form action="">
                 <!--Sobre o evento  -->
                 <section class="about-invite">
-                    <div class="about-container">
-                        <img class="icon-calendar" src="./assets/icons/calendar.png" alt="icone de calendário">
-                        <h3 class="title-about-invite">Sobre o evento</h3>
+                    <div class="title-container">
+                        <img class="icon-pattern" src="./assets/icons/calendar.png" alt="icone de calendário">
+                        <h3 class="title-pattern">Sobre o evento</h3>
                     </div>
 
                     <div class="data-container">
@@ -86,12 +86,79 @@
 
                         <div class="description-container">
                             <div class="discription">
-                                <label for="comment">Descrição</label>
+                                <label class="rotulo-name" for="comment">Descrição</label>
                                 <textarea name="comment" placeholder="Escreva sobre os detalhes do evento"></textarea>
                             </div>
                         </div>
                     </div>
 
+                </section>
+
+                <!-- Personalização -->
+                <section class="customization">
+                    <div class="title-container">
+                        <img class="icon-pattern" src="./assets/icons/paintbrush-vertical.png" alt="icone de calendário">
+                        <h3 class="title-pattern">Personalização</h3>
+                    </div>
+
+                    <!-- color options -->
+                    <div class="color-main-container">
+                        <span class="rotulo-name">Cor principal</span>
+                        <div class="color-options">
+                            <input type="radio" id="blue" name="color">
+                            <label for="blue" style="--color: #59b2ff"></label>  
+
+                            <input type="radio" id="fuschia" name="color">
+                            <label for="fuschia" style="--color: #FF59F9"></label>
+
+                            <input type="radio" id="pink" name="color">
+                            <label for="pink" style="--color: #FF598B"></label>
+
+                            <input type="radio" id="orange" name="color">
+                            <label for="orange" style="--color: #FF8B59"></label>
+
+                            <input type="radio" id="yellow" name="color">
+                            <label for="yellow" style="--color: #FFCD59"></label>
+                            
+                            <input type="radio" id="lime" name="color">
+                            <label for="lime" style="--color: #E1FF59"></label>
+
+                            <input type="radio" id="green" name="color">
+                            <label for="green" style="--color: #59FF91"></label>
+
+                            <input type="radio" id="cyan" name="color">
+                            <label for="cyan" style="--color: #59FFF9"></label>
+
+                            <input type="radio" id="navy" name="color">
+                            <label for="navy" style="--color: #6A59FF"></label>
+                        </div>
+                    </div>
+
+                    <div class="theme-container">
+                        <span class="rotulo-name">Tema do evento</span>
+                        <div class="theme-grid">
+                        <div class="card card-selectable">
+                            <input type="radio" name="theme" value="theme-1" aria-label="Tema 1" checked>
+                                <img src="./assets/img/aniversario.png" alt="aniversario">
+                                <span class="rotulo-name">Aniversário</span>
+                            </div>
+                        <div class="card card-selectable">
+                            <input type="radio" name="theme" value="theme-2" aria-label="Tema 2">
+                                <img src="./assets/img/infantil.png" alt="infantil">
+                                <span class="rotulo-name">Infantil</span>
+                            </div>
+                        <div class="card card-selectable">
+                            <input type="radio" name="theme" value="theme-3" aria-label="Tema 3">
+                                    <img src="./assets/img/formatura.png" alt="formatura">
+                                    <span class="rotulo-name">Formatura</span>
+                            </div>
+                        <div class="card card-selectable">
+                            <input type="radio" name="theme" value="theme-4" aria-label="Tema 4">
+                                <img src="./assets/img/casamento.png" alt="casamento">
+                                <span class="rotulo-name">Casamento</span>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </form>
         </menu>

@@ -2,6 +2,6 @@
     height: 100vh;
     display: flex;
     padding: 100px;
-    /* background-color: var(--shape-background); */
+    background-color: var(--shape-background);
     gap: 20px;
 }

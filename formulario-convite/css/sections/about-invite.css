@@ -21,14 +21,13 @@
 
         & .field-type {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
 
             & .type {
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
- 
                 font: var(--body-sm);
  
                 & .type-options {
@@ -119,15 +118,15 @@
         }
 
         & .description-container {
-            font: var(--body-md);
-            color: var(--text-heading);
             width:560px ;
             height: 167px;
-            
+            margin-bottom: 48px;
+
             & .discription {
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
+                
 
                 & textarea {
                     height: 136px;
@@ -137,6 +136,7 @@
                     font: var(--body-md);
                     color: var(--input-placeholder);
                     padding: 16px;
+                    
                 }
             }
         }
@@ -145,28 +145,5 @@
 }
 
 
-/* padroes */
 
-.box-pattern {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font: var(--body-sm);
-    
-    & input {
-        padding: 16px;
-        border-radius: 8px;
-        background-color: var(--input-base);
-        border: 1px solid var(--input-stroke);
-        font: var(--body-md);
-        color: var(--input-placeholder);
-
-    }
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 
