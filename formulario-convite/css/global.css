@@ -63,8 +63,9 @@
 
 htm,
 body {
-    overflow: hidden;
-     background-color: var(--shape-background);
+    min-height: 100%;
+    overflow-y: auto;
+    background-color: var(--shape-background);
 }
 
 .rotulo-name {

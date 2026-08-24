@@ -49,6 +49,7 @@
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 8px;
+        margin-bottom: 30px;
 
         & .card-selectable {
             position: relative;
@@ -82,7 +83,7 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        height: 360px;
+        margin-bottom: 30px;
 
 
         & .theme-grid {
@@ -90,6 +91,7 @@
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 1fr);
             gap: 8px;
+            margin-bottom: 30px;
             
             & .card {
                 background-color: antiquewhite;
@@ -106,5 +108,95 @@
 
             }
         }
+
+        & .theme-dark-coverPhoto {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            & .switch-row {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                
+
+                & .switch {
+                    position: relative;
+                    width: 64px;
+                    height: 32px;
+                    cursor: pointer;
+
+                    & input {
+                        position: absolute;
+                        opacity: 0;
+                    }
+
+                    & .slider {
+                        position: absolute;
+                        inset: 0;
+                        border: 2px solid var(--input-stroke);
+                        border-radius: 999px;
+                        background: var(--input-base);
+                        transition: .2s;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            width: 24px;
+                            height: 24px;
+                            top: 2px;
+                            left: 3px;
+                            border-radius: 50%;
+                            background: var(--shape-hover);
+                            transition: .2s;
+                        }
+                    }
+
+                    & input:checked + .slider {
+                        background: var(--brand-light);
+                    }
+
+                    & input:checked + .slider::before {
+                        transform: translateX(30px);
+                        background: var(--text-heading);
+                    }
+
+                    & input:focus-visible + .slider {
+                        outline: 2px solid var(--brand-light);
+                        outline-offset: 3px;
+                    }
+
+                    & .sr-only {
+                        position: absolute;
+                        width: 1px;
+                        height: 1px;
+                        overflow: hidden;
+                        clip: rect(0, 0, 0, 0);
+                    }
+
+                }
+
+                & .style-label {
+                    color: var(--text-heading);
+                    font: var(--body-md);
+                }
+
+                & .style-light {
+                    display: none;
+                }
+
+                &:has(input:checked) {
+                    & .style-dark {
+                        display: none;
+                    }
+
+                    & .style-light {
+                        display: inline;
+                    }
+                }
+            }
+        }
     }
+
+    
 }
