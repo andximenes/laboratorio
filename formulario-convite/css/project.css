@@ -1,7 +1,7 @@
 .project {
     height: 100vh;
     display: flex;
-    padding: 100px;
+    padding: 10px;
     background-color: var(--shape-background);
     gap: 20px;
 }

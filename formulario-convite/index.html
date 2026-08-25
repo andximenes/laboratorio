@@ -199,23 +199,106 @@
                             </div>
                         </div>
 
-                        <div class="theme-dark-coverPhoto">
-                            <span class="rotulo-name">Estilo do convite</span>
+                        <div class="thema-sendPicture-container">
+                            <div class="theme-dark-coverPhoto">
+                                <span class="rotulo-name">Estilo do convite</span>
 
-                            <div class="switch-row">
-                                <label class="switch" for="dark-mode" >
-                                    <input type="checkbox" name="dark-mode" id="dark-mode">
-                                    <span class="slider"></span>
-                                    <span class="sr-only">Ativar tema escuro</span>
-                                </label>
-                                <span class="style-label">
-                                    <span class="style-dark">Escuro</span>
-                                    <span class="style-light">Claro</span>
-                                </span>
+                                <div class="switch-row">
+                                    <label class="switch" for="dark-mode" >
+                                        <input type="checkbox" name="dark-mode" id="dark-mode">
+                                        <span class="slider"></span>
+                                        <span class="sr-only">Ativar tema escuro</span>
+                                    </label>
+                                    <span class="style-label">
+                                        <span class="style-dark">Escuro</span>
+                                        <span class="style-light">Claro</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="send-picture-container">
+                                    <span class="rotulo-name">Foto de capa</span>
+
+                                    <div class="select-archive">
+                                        <input type="file" name="archive" id="archive" accept="image/*">
+                                        <label for="archive">
+                                            <img src="./assets/icons/upload.png" alt="">
+                                            <span>Selecionar</span>
+                                        </label>
+
+                                        <span class="archive-name">
+                                            Nenhum arquivo selecionado
+                                        </span>
+                                    </div>
+                            </div>
+                        </div>
+             
+                    </div>
+                </section>
+
+                <!-- Dados para contato -->
+                <section class="contact">
+                    <div class="title-container">
+                        <img class="icon-pattern" src="./assets/icons/contact.png" alt="icone de calendário">
+                        <h3 class="title-pattern">Dados para contato</h3>
+                    </div>
+
+                    <div class="contact-data-container">
+                        <div class="data-name">
+                            <span class="rotulo-name">Nome</span>
+                            <input type="text" name="fullName" id="fullName" placeholder="Nome completo">
+                            <label for="fullName">
+                                <img src="./assets/icons/circle-alert.png" alt="Campo obrigatório">
+                                <span>Campo obrigatório</span>
+                            </label>
+                        </div>
+
+                        <div class="data-emailAndPhone">
+                            <div class="email box-pattern">
+                                <span class="rotulo-name">Email</span>
+                                <input type="email" placeholder="exemplo@email.com">
+                            </div>
+                            <div class="phone box-pattern">
+                                <span class="rotulo-name">Telefone</span>
+                                <input type="tel" placeholder="(99) 99999-9999">
                             </div>
                         </div>
                     </div>
                 </section>
+
+                <!-- Política de privacidade -->
+                 <section class="privacy-policy">
+                    <label class="policy-option">
+                        <input type="checkbox" name="terms" required checked>
+                        <span class="checkbox"></span>
+
+                        <span>Li e concordo com os<a href="#">Termos e Condições</a> e com a<a href="#">Política de Privacidade</a>
+                        </span>
+                    </label>
+
+                    <label class="policy-option">
+                        <input type="checkbox" name="email-updates">
+                        <span class="checkbox"></span>
+
+                        <span>Aceito receber atualizações e promoções por e-mail</span>
+                    </label>
+
+                    <label class="policy-option">
+                        <input type="checkbox" name="sms-updates">
+                        <span class="checkbox"></span>
+
+                        <span>Aceito receber atualizações e promoções por SMS</span>
+                    </label>
+                 </section>
+                 
+                 <div class="button-container">
+                    <button type="submit">
+                        <img src="./assets/icons/ticket.png" alt="">
+                        Gerar convite
+                    </button>
+                 </div>
+ 
+
             </form>
         </menu>
     </div>

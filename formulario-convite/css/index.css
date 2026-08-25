@@ -2,7 +2,10 @@
 @import url("project.css");
 @import url("brand.css");
 @import url("invite.css");
+@import url("button.css");
 
 /* sections */
 @import url(./sections/about-invite.css);
 @import url(./sections/customization.css);
+@import url(./sections/contact.css);
+@import url(./sections/privacy-policy.css);

@@ -1,0 +1,46 @@
+.contact {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 60px;
+   
+   & .title-container {
+        margin-bottom: 24px;
+   }
+
+   & .data-name{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 48px;
+        & input {
+            padding: 16px;
+            border-radius: 8px;
+            background-color: var(--input-base);
+            border: 1px solid var(--input-stroke);
+            font: var(--body-md);
+            color: var(--input-placeholder);
+
+        }
+
+        & label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+            margin: 10px  0px 20px 0px;
+
+            & img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    & .data-emailAndPhone {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+
+}
