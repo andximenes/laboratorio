@@ -99,6 +99,11 @@ ul[role="list"] {
     list-style: none;
 }
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
 /*se a largura for maior que 1280px*/
 @media (width >= 80em) {
     :root {
