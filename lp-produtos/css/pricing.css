@@ -28,6 +28,17 @@
         font: var(--fw-base) 1rem/125% var(--ff-sans);
     }
 
+
+    & .btn {
+        width: 100%;
+    }
+
+    & .separator {
+        height: 1px;
+        margin-block: 2rem;
+        background: radial-gradient(var(--text-color-secundary), var(--surface-color) 70%);
+    }
+
     @media (width >= 80rem) {
         --fs-price: 2.5rem;
 
