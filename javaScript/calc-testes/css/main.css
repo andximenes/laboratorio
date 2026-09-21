@@ -29,7 +29,10 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: .625rem;
-
+        & #clear,
+        & .zero {
+            grid-column: span 3;
+        }
         & button {
             border-radius: 10px;
             border: none;
