@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+}
+
+div {
+    background-color: white;
+    width: 4rem;
+    height: 4rem;
+    
+    opacity: .6;
+    cursor: pointer;
+
+    transition-property: opacity, transform;
+    transition-duration: 1s, 100ms;
+    transition-delay: 1s, 10ms;
+}
+
+div:hover {
+    opacity: 1;
+    transform: translate(28px);
+}

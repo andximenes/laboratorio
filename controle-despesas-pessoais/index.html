@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de despesas</title>
+
+    <link rel="stylesheet" href="/style/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <h1>Expense control</h1>
+
+        <div class="inputs-container">
+            <div class="box-1">
+                <label for="description-input">Description</label>
+                <input type="text" id="description-input">
+            </div>
+            
+            <div class="box-2">
+                <label for="price-input">Price</label>
+                <input type="text" id="price-input">
+            </div>
+
+            <div class="box-3">
+                <label for="category">Category</label>
+                <select id="category">
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Lazer">Lazer</option>
+                    <option value="Compras">Compras</option>
+                    <option value="Contas">Contas</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+            
+            <div class="box-4">
+                <button type="button">Add</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
