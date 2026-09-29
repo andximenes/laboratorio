@@ -45,6 +45,10 @@ body {
     background-color: var(--bg-primary);
     font: var(--paragraph);
     color: var(--always-white);
+
+    padding: 20px;
+    height: 100vh;
+    
 }
 
 h1 {

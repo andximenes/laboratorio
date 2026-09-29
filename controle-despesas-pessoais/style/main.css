@@ -1,0 +1,172 @@
+.container {
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    position: relative;
+
+
+    & .inputs-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        
+
+        & .box {
+            display: flex;
+            justify-content: space-between;
+            padding-block: 10px;
+
+            & label {
+                padding-inline: 20px;
+                padding-block: 10px;
+                width: 40%;
+            }
+
+            & input, select {
+                width: 60%;
+                border-radius: 10px;
+                padding-inline: 10px;
+            }
+        }
+
+        & .box-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;  
+            margin: 20px 0;
+
+            & button {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                border: none;
+                background-color: greenyellow;
+                font: var(--label);
+               
+            }
+        }
+
+        & .expenses-list {   
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            & li {
+                background-color: rgb(250, 176, 65);
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+                padding: 10px 10px;
+                color: black;
+                border-radius: 8px;
+                
+
+                & .badge {
+                    display: flex;
+                    align-items: center;
+                    background: #05f025;
+                    padding: 4px 8px;
+                    border-radius: 8px;
+                    font-size: 11px;
+                    color: black;
+                }
+                
+            }
+        }
+
+
+    }
+
+    & .result {
+        width: 100%;
+
+        display: flex;
+        justify-content: flex-end;
+
+        margin-top: auto;
+        padding: 10px;
+        
+        
+        & .total {
+            font-size: 20px;
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        gap: 24px;
+    }
+
+    .container .inputs-container {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 20px;
+    }
+
+    .container .inputs-container .box {
+        display: flex;
+        flex-direction: column;
+
+        gap: 8px;
+
+        padding: 0;
+    }
+
+    .container .inputs-container .box label {
+        width: 100%;
+
+        padding: 0;
+    }
+
+    .container .inputs-container .box input,
+    .container .inputs-container .box select {
+        width: 100%;
+        height: 44px;
+
+        padding-inline: 12px;
+    }
+
+    .container .inputs-container .box-button {
+        grid-column: 1 / -1;
+
+        margin: 0;
+        height: 44px;
+    }
+
+    .container .inputs-container .expenses-list {
+        grid-column: 1 / -1;
+
+        margin-top: 20px;
+    }
+
+    .container .inputs-container .expenses-list li {
+        padding: 14px 20px;
+    }
+
+    .container .result {
+        max-width: 900px;
+
+        padding: 16px 0;
+
+        margin-top: auto;
+    }
+
+    .container .result .total {
+        font-size: 20px;
+    }
+}

@@ -16,17 +16,17 @@
         <h1>Expense control</h1>
 
         <div class="inputs-container">
-            <div class="box-1">
+            <div class="box box-1">
                 <label for="description-input">Description</label>
                 <input type="text" id="description-input">
             </div>
             
-            <div class="box-2">
+            <div class="box box-2">
                 <label for="price-input">Price</label>
                 <input type="text" id="price-input">
             </div>
 
-            <div class="box-3">
+            <div class="box box-3">
                 <label for="category">Category</label>
                 <select id="category">
                     <option value="">Selecione uma categoria</option>
@@ -42,17 +42,18 @@
                 </select>
             </div>
             
-            <div class="box-4">
-                <button type="button" id="button">Add</button>
+            <div class=" box-button">
+                <button type="button" id="button">ADD</button>
             </div>
 
             <ul class="expenses-list"></ul>
+        </div>
 
-            <div class="result">
-                <span class="total"></span>
-            </div>
+        <div class="result">
+            <span class="total"></span>
         </div>
     </main>
+    
     <script src="/js/index.js"></script>
 </body>
 </html>

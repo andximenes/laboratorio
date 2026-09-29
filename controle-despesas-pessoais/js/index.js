@@ -8,6 +8,10 @@ const span = document.querySelector(".total")
 const expenses = []
 let total = 0
 
+span.innerHTML = `
+    Total: $ ${total}
+`
+
 button.addEventListener("click", () => {
 
     const description = descriptionInput.value.trim()
@@ -39,7 +43,19 @@ button.addEventListener("click", () => {
 
     const li = document.createElement("li")
 
-    li.textContent = `${expense.description}, R$ ${expense.value} - ${expense.category}`
+    li.innerHTML = `
+        <div class="item">
+            ${expense.description}
+        </div> 
+        
+        <div class="price">
+            R$ ${expense.value}
+        </div>
+        
+        <span class="badge">
+            ${expense.category}
+        </span>
+    `
 
     ul.appendChild(li)
 
@@ -48,7 +64,9 @@ button.addEventListener("click", () => {
     category.value = ""
 
     total += price
-    span.textContent = `Total: R$${total}`
+
+    span.textContent = `Total: R$ ${total}`
+
     console.log(total)
 
 })
