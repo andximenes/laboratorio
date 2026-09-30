@@ -5,17 +5,71 @@ const button = document.getElementById("button")
 const ul = document.querySelector(".expenses-list")
 const span = document.querySelector(".total")
 
+const filterCategory = document.getElementById("filter-category")
+
 const expenses = []
+
 let total = 0
 
-span.innerHTML = `
-    Total: $ ${total}
-`
+span.textContent = `Total: R$ ${total.toFixed(2)}`
+
+
+function renderExpenses(list) {
+
+    ul.innerHTML = ""
+
+    list.forEach((expense) => {
+
+        const li = document.createElement("li")
+
+        li.innerHTML = `
+            <div class="item">
+                ${expense.description}
+            </div>
+
+            <div class="price">
+                R$ ${expense.value.toFixed(2)}
+            </div>
+
+            <span class="badge">
+                ${expense.category}
+            </span>
+
+            <i class="bi bi-trash-fill"></i>
+        `
+
+        const i = li.querySelector("i")
+
+        i.addEventListener("click", () => {
+
+            const index = expenses.findIndex((item) => {
+                return item === expense
+            })
+
+            if (index !== -1) {
+                expenses.splice(index, 1)
+            }
+
+            total -= expense.value
+
+            span.textContent = `Total: R$ ${total.toFixed(2)}`
+
+            applyFilter()
+        })
+
+        ul.appendChild(li)
+    })
+}
 
 button.addEventListener("click", () => {
 
     const description = descriptionInput.value.trim()
-    const price = Number(priceInput.value)
+
+    const price = Number(
+        priceInput.value
+            .replace(/\./g, "")
+            .replace(",", ".")
+    )
 
     if (description === "") {
         console.log("The field cannot be empty")
@@ -32,7 +86,6 @@ button.addEventListener("click", () => {
         return
     }
 
-
     const expense = {
         description: description,
         value: price,
@@ -41,32 +94,34 @@ button.addEventListener("click", () => {
 
     expenses.push(expense)
 
-    const li = document.createElement("li")
+    total += price
 
-    li.innerHTML = `
-        <div class="item">
-            ${expense.description}
-        </div> 
-        
-        <div class="price">
-            R$ ${expense.value}
-        </div>
-        
-        <span class="badge">
-            ${expense.category}
-        </span>
-    `
+    span.textContent = `Total: R$ ${total.toFixed(2)}`
 
-    ul.appendChild(li)
+    applyFilter()
 
     descriptionInput.value = ""
     priceInput.value = ""
     category.value = ""
-
-    total += price
-
-    span.textContent = `Total: R$ ${total}`
-
-    console.log(total)
-
 })
+
+function applyFilter() {
+
+    if (filterCategory.value === "all") {
+        renderExpenses(expenses)
+        return
+    }
+
+    const filteredExpenses = expenses.filter((expense) => {
+        return expense.category === filterCategory.value
+    })
+
+    renderExpenses(filteredExpenses)
+}
+
+
+filterCategory.addEventListener("change", () => {
+    applyFilter()
+})
+
+

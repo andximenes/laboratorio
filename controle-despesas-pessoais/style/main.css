@@ -48,7 +48,8 @@
                 border: none;
                 background-color: greenyellow;
                 font: var(--label);
-               
+                
+                cursor: pointer;
             }
         }
 
@@ -76,10 +77,18 @@
                     font-size: 11px;
                     color: black;
                 }
+
+                & i {
+                    transition: color 0.3s ease;
+                }
+
+                & i:hover {
+                    cursor: pointer;
+                    color: red;
+                }
                 
             }
         }
-
 
     }
 
@@ -124,7 +133,7 @@
 
         gap: 8px;
 
-        padding: 0;
+        
     }
 
     .container .inputs-container .box label {
