@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student grading system</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <form class="add-grade box">
+                <div class="name">
+                    <label for="Student-name">Name</label>
+                    <input type="text" placeholder="Full name">
+                </div>
+                <div class="header">
+                    <img src="/assets/img/plus.png" alt="icon-plus">
+                    <h1>Add Your Grades</h1>
+                </div>
+                <div class="subject">
+                    <label for="subject-name">subject-name</label>
+                    <select name="subject-name" required>
+                        <option value="" disabled selected>Select a subject</option>
+                        <option value="Art">Art</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Chermistry">Chermistry</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="English ">English </option>
+                        <option value="Geography ">Geography </option>
+                        <option value="Health Education">Health Education  </option>
+                        <option value="History">History  </option>
+                    </select>
+                </div>
+                
+                <div class="scored">
+                    <label for="Period">Period</label>
+                    <select name="period" required>
+                        <option value="" disabled selected>Select a period</option>
+                        <option value="1">1º period</option>
+                        <OPtion value="2">2º period</OPtion>
+                        <OPtion value="3">3º period</OPtion>
+                        <OPtion value="4">4º period</OPtion>
+                    </select>
+                </div>
+
+                <div class="total">
+                    <label for="Marks-scored">Marks Scoired</label>
+                    <input type="text" name="Total-marks" placeholder="85">
+                </div>
+                
+                <button type="submit">Add Grade</button>
+            </form>
+
+            <div class="box rigthSide">
+                <label for="Situation">Search by situation</label>
+                <select name="Situation" required>
+                    <option value="" disabled selected>Situation</option>
+                    <option value="aproved">Approved</option>
+                    <option value="filed">Filed</option>
+                </select>
+            </div>
+
+            <div class="resume">
+                <div class="data box">
+                    <span>John Doe</span>
+                    <span>8.5</span>
+                    <span class="status">aproved</span>
+                    <img src="/assets/img/trash.png" alt="">
+                </div>
+                <div class="data box">
+                    <span>John Doe</span>
+                    <span>8.5</span>
+                    <span class="status">aproved</span>
+                    <img src="/assets/img/trash.png" alt="">
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</body>
+</html>
