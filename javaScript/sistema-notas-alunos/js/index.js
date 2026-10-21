@@ -103,8 +103,12 @@ form.onsubmit = (event) => {
     }
 
     allGrades.push(information)
+    console.log("Grades: ", allGrades)
+
     renderInfo(information)
+
     filter()
+
     clear()
 }
 
@@ -192,7 +196,7 @@ function renderInfo(information) {
     resume.append(div)
 
     //REMOVE GRADE
-    removeGrade(iconRemove, div)
+    removeGrade(iconRemove, div, information)
    
 }
 
@@ -219,8 +223,19 @@ function filter() {
     })
 }
 
-function removeGrade(iconRemove, div) {
+function removeGrade(iconRemove, div, information) {
+
     iconRemove.onclick = () => {
+        const index = allGrades.findIndex((grade) => {
+            return grade === information
+        })
+
+        if (index !== -1) {
+            allGrades.splice(index, 1)
+        }
+
         div.remove()
+
+        console.log(allGrades)
     }
 }
