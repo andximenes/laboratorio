@@ -239,3 +239,5 @@ function removeGrade(iconRemove, div, information) {
         console.log(allGrades)
     }
 }
+
+

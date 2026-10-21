@@ -20,6 +20,7 @@
 h1 {
     font: var(--bold)
 }
+
 label {
     font: var(--medium);
     font-size: 12px;

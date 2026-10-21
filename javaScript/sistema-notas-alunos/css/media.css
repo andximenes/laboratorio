@@ -1,0 +1,11 @@
+@media (min-width: 1280px) {
+    body {
+        background-color: black;
+    }
+    
+    .container {
+        width: 50%;
+        margin: 0 auto;
+        
+    }
+}
