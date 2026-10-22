@@ -12,9 +12,12 @@ body {
     background-color: var(--bg);
     width: 90%;
     margin: 0 auto;
+    
+    display: flex;
+    
     padding-block: 20px;
     min-height: 100vh;
 
-    display: flex;
+   
     
 }

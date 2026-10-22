@@ -1,0 +1,42 @@
+.columns {
+    background-color: #ff2f90;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    margin-block-end: 10px;
+    color: white;
+    
+    & span {
+        width: 100 / 4;
+
+    }
+   
+}
+
+.card {
+    display: flex;
+    background-color: #fd96c6;
+    padding: 20px 10px;
+
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    border-radius: 7px;
+
+    & .content {
+        text-align: center;
+        width: 50px
+    }
+
+    & .trash-icon{
+         width: 50px;
+         text-align: center;
+         
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}   
+
+  
