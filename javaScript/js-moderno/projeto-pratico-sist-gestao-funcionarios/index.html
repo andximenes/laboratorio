@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio prático - Cadastro de funcionários</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap" rel="stylesheet">
 </head>
 <body>
     <main class="container">
         <header>
-            <img class="icon-header" src="" alt="">
-            <h1 class="title">PeopleManage</h1>
-            <p class="subtitle">Gestão de funcionários</p>
+            <div class="brand-container">
+                <img class="brand-icon" src="/assets/icons/employees-icon.png" alt="">
+                <div class="brand-txt">
+                    <h1 class="title">PeopleManage</h1>
+                    <p class="subtitle">Gestão de funcionários</p>
+                </div>
+            </div>
         </header>
         <div class="dashboard">
-            <div class="employees">
+            <div class="box">
                 <span>employees</span>
                 <span>4</span>
             </div>
-            <div class="monthly-sheet">
+            <div class="box">
                 <span>monthly sheet</span>
                 <span>R$ 15.500</span>
             </div>
-            <div class="average-salary">
+            <div class="box">
                 <span>Average Salary</span>
                 <span>R$ 3.875</span>
             </div>
@@ -46,37 +54,65 @@
             </div>
             <div class="box">
                 <label for="state">State</label>
-                <select name="state" id="">
-                    <option value="">Acre</option>
-                    <option value="">Amapá </option>
-                    <option value="">Amazonas </option>
-                    <option value="">Pará </option>
-                    <option value="">Rondônia </option>
-                    <option value="">Roraima </option>
-                    <option value="">Tocantins </option>
-                    <option value="">Alagoas </option>
-                    <option value="">Bahia </option>
-                    <option value="">Ceará </option>
-                    <option value="">Maranhão </option>
-                    <option value="">Paraíba </option>
-                    <option value="">Pernambuco </option>
-                    <option value="">Piauí </option>
-                    <option value="">Rio Grande do Norte</option>
-                    <option value="">Sergipe </option>
-                    <option value="">Goiás </option>
-                    <option value="">Mato Grosso</option>
-                    <option value="">Mato Grosso do Sul</option>
-                    <option value="">Distrito Federal</option>
-                    <option value="">Espírito Santo</option>
-                    <option value="">Minas Gerais</option>
-                    <option value="">Rio de Janeiro</option>
-                    <option value="">São Paulo</option>
-                    <option value="">Paraná </option>
-                    <option value=""> Rio Grande do Sul</option>
-                    <option value="">Santa Catarina</option>
+                <select name="state" id="state-select">
+                    <option value="">--Please chose an option--</option>
+                    <option value="Acre">Acre</option>
+                    <option value="Amapá">Amapá </option>
+                    <option value="Amazonas">Amazonas </option>
+                    <option value="Pará">Pará </option>
+                    <option value="Rondônia">Rondônia </option>
+                    <option value="Roraima">Roraima </option>
+                    <option value="Tocantins">Tocantins </option>
+                    <option value="Alagoas">Alagoas </option>
+                    <option value="Bahia">Bahia </option>
+                    <option value="Ceará">Ceará </option>
+                    <option value="Maranhão">Maranhão </option>
+                    <option value="Paraíba">Paraíba </option>
+                    <option value="Pernambuco">Pernambuco </option>
+                    <option value="Piauí">Piauí </option>
+                    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                    <option value="Sergipe">Sergipe </option>
+                    <option value="Goiás">Goiás </option>
+                    <option value="Mato Grosso">Mato Grosso</option>
+                    <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                    <option value="Distrito Federal">Distrito Federal</option>
+                    <option value="Espírito Santo">Espírito Santo</option>
+                    <option value="Minas Gerais">Minas Gerais</option>
+                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                    <option value="São Paulo">São Paulo</option>
+                    <option value="Paraná">Paraná </option>
+                    <option value="Rio Grande do Sul"> Rio Grande do Sul</option>
+                    <option value="Santa Catarina">Santa Catarina</option>
                 </select>
             </div>
+
+            <button type="submit" class="register-button">
+                <img src="/assets/icons/add-icon.png" alt="">
+                <span>Register employer</span>
+            </button>
         </form>
+
+        <div class="list-employeer">
+            <div class="info">
+                <span>List of Employees</span>
+                <div>
+                    <span class="quantity">1</span>
+                    <span>Employees</span>
+                </div>
+            </div>
+
+            <div class="Employee">
+                    <div class="box">
+                        <span>John</span>
+                        <span>Brasília/ DF</span>
+                    </div>
+                    <div class="box">
+                        <span>R$ 4.500</span>
+                    </div>
+                    <img src="/assets/icons/edit-icon.png" class="box edit-button" alt="">
+                    <img src="/assets/icons/trash-icon.png" class="box remove-button" alt="">
+            </div>
+        </div>
     </main>
 </body>
 </html>

@@ -1,0 +1,51 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    min-height: 300px;
+
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+
+    & .box {
+        display: flex;
+        gap: 10px;
+        
+        & label {
+            display: flex;
+            align-items: center;
+            width: 25%;
+
+        }
+
+        & input,
+        select {
+            width: 80%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid grey ;
+        }
+    }
+
+    & .register-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        border: 1px solid gray;
+        border-radius: 10px;
+        background-color: greenyellow;
+        margin-block: 10px;
+        & img {
+            width: 50px;
+        }
+        
+        & span {
+            font: var(--text-md);
+        }
+    }
+}

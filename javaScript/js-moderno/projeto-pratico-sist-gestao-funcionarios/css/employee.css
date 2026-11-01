@@ -1,0 +1,68 @@
+.list-employeer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    justify-content:center ;
+
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+    border: 2px solid orange;
+    padding: 10px;
+    border-radius: 10px;
+
+    & .info {
+        width: 100%;
+        height: 50px;
+
+        display: flex;
+        justify-content: space-between;
+        font: var(--text-lg);
+
+       
+       
+        & span {
+            font-weight: bolder;
+        }
+
+        & .quantity {
+            font-weight:normal;
+        }
+    }
+
+    & .Employee {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 5px;
+
+        width: 100%;
+        height: 70px;
+        
+        border-radius: 10px;
+        padding: 10px;
+        border: 2px solid rgb(221, 219, 219);
+
+        background-color: rgb(240, 240, 255);
+
+        & .box {
+            width: 25%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            font: var(--text-sm);
+            
+        }
+
+        & .edit-button, 
+        .remove-button {
+            margin-block-start: 5px;
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
