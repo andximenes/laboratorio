@@ -30,7 +30,7 @@
         }
     }
 
-    & .Employee {
+    & .employee {
         display: flex;
         align-items: stretch;
         justify-content: space-between;
