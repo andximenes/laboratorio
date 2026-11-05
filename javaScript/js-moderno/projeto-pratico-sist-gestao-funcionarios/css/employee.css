@@ -51,11 +51,15 @@
 
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: normal;
             justify-content: center;
-
-            font: var(--text-sm);
-            
+            font-size: 10px;
+            color: rgb(61, 60, 60);
+            & .name {
+                font-weight: bold;
+                font-size: 9px;
+                color: black;
+            }
         }
 
         & .edit-button, 

@@ -11,7 +11,8 @@ const total = document.querySelector(".quantity")
 
 // FUNCIONÁRIOS INICIAIS
 let employees = [
-    {
+    {   
+        id: 1,
         name: "Sarah Moraes",
         age: 29,
         salary: 2500,
@@ -22,6 +23,7 @@ let employees = [
         
     },
     {
+        id: 2,
         name: "João Carlos",
         age: 18,
         salary: 1800,
@@ -32,6 +34,7 @@ let employees = [
     
     },
     {
+        id: 3,
         name: "Fernanda Ramos",
         age: 45,
         salary: 7200,
@@ -42,9 +45,14 @@ let employees = [
     }
 ]
 
+let nextId = 4
+
+total.textContent = employees.length
+
 // CLASSE
 class Employee {
-    constructor(name, age, salary, city, state) {
+    constructor(id, name, age, salary, city, state) {
+        this.id = id
         this.name = name
         this.age = age
         this.salary = salary
@@ -81,7 +89,7 @@ salary.oninput = () => {
 // FORMULÁRIO
 form.onsubmit = (event) => {
     event.preventDefault()
-
+    
     const nameValue = fullName.value.trim()
     const ageValue = Number(age.value)
     const salaryValue = Number(extractDigits(salary)) / 100
@@ -115,15 +123,24 @@ form.onsubmit = (event) => {
 
     // CRIAR FUNCIONÁRIO
     const newEmployee = new Employee(
+        nextId,
         nameValue,
         ageValue,
         salaryValue,
         cityValue,
         stateValue
+        
+
     )
 
     employees = [...employees, newEmployee]
+    
+    //Atualiza o total de employees
+    total.textContent = employees.length
 
+    //add +1 ao id
+    nextId++
+    
     console.log("Funcionário cadastrado:", newEmployee)
     console.log("Lista atualizada:", employees)
 
@@ -146,7 +163,7 @@ function removeNumbers(element) {
 
 function showEmployee(employee) {
     const listEmployeer = document.querySelector(".list-employeer")
-
+    
     // Criando um NOVO card para cada funcionário
     const divEmployee = document.createElement("div")
 
@@ -166,6 +183,7 @@ function showEmployee(employee) {
     // Classes CSS
     divEmployee.classList.add("employee")
     divNameAndCity.classList.add("box")
+    name.classList.add("name")
     divSalary.classList.add("box")
 
     edit.classList.add("box", "edit-button")
@@ -189,6 +207,30 @@ function showEmployee(employee) {
     remove.setAttribute("src", "./assets/icons/trash-icon.png")
     remove.setAttribute("alt", "Remover funcionário")
 
+    //EXCLUIR
+    remove.onclick = () => {
+        const confirmed = confirm(
+            `Deseja excluir ${employee.name}?`
+        )
+
+        if(!confirmed) {
+            return
+        }
+
+        //mantenha todos os funcionários cujo ID seja diferente do funcionário escolhido
+        employees = employees.filter((item) => {
+            return item.id !== employee.id
+        })
+
+        // Remover o card da tela
+        divEmployee.remove()
+
+        console.log("Lista atualizada: ", employees)
+
+        //Atualiza a quantidade
+        total.textContent = employees.length
+    }
+
     // Organizando elementos
     divNameAndCity.append(name, cityAndState)
 
@@ -203,4 +245,6 @@ function showEmployee(employee) {
 
     // Inserindo o card na página
     listEmployeer.append(divEmployee)
+
+    
 }
