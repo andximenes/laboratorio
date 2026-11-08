@@ -16,7 +16,7 @@ const accounts = [
 ]
 
 const updatedAccounts = accounts.map((account) => {
-    const { type, amount} = account.transaction
+    const {type, amount} = account.transaction
     
     const balance = type === "deposit"
     ? account.balance + amount
