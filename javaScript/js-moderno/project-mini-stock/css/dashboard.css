@@ -1,0 +1,40 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+
+    & h2 {
+        grid-column: 1 / -1;
+        font: var(--medium);
+    }
+
+    /* CARDS */
+    & .quantity, 
+    & .stock-value {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        padding: 1rem;
+
+        background-color: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: .75rem;
+    }
+
+    /* FONTS */
+    & .quantity span, 
+    & .stock-value span {
+        font: var(--small);
+        color: var(--text-secondary);
+    }
+
+    & .quantity strong, 
+    & .stock-value strong {
+        font: var(--large);
+        color: var(--primary);
+        overflow-wrap: anywhere; /*O overflow-wrap: anywhere permite quebrar textos muito longos, como um valor monetário grande, evitando que ultrapassem os limites do cartão.*/
+    }
+
+
+}

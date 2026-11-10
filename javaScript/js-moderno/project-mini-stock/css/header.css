@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1.5rem 1rem;
+
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+
+    & .logo-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 3rem;
+        height: 3rem;
+        
+        background-color: var(--primary);
+        border-radius: .75rem;
+    }
+
+    & .slogan-name span {
+        font: var(--small);
+        color: var(--text-secondary);
+    }
+}

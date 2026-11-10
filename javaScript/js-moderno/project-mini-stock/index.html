@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Stock</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-icon" aria-hidden="true">📦</div>
+
+        <div class="slogan-name">
+            <h1>MiniStock</h1>
+            <span>Smart inventory control</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- DASHBOARD -->
+        <section class="dashboard">
+            <h2>dashboard</h2>
+
+            <div class="quantity">
+                <span>Products</span>
+                <strong id="totalProducts">0</strong>
+            </div>
+
+            <div class="stock-value">
+                <span>stock value</span>
+                <strong id="totalStockValue">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <!-- REGISTER -->
+        <section class="register">
+            <h2>Register product</h2>
+            
+            <!-- FORM -->
+            <form action="">
+                <div>
+                    <label for="productName">Product name</label>
+                    <input type="text" id="productName" placeholder="Product name" required>
+                </div>
+               <div>
+                    <label for="productPrice">Product price</label>
+                    <input type="text" id="productPrice" placeholder="Price (ex: R$99,90)" required>
+               </div>
+                <div>
+                    <label for="productQuantity">product Quantity</label>
+                    <input type="number" id="productQuantity" placeholder="quantity" required>
+                </div>
+
+                <button type="submit">Register product</button>
+            </form>
+
+        </section>
+
+        <!-- INVENTORY -->
+        <section class="inventory">
+            <h2>registered products</h2>
+
+            <ul id="productsList">
+                <li class="product-card">
+                    <div class="product-info">
+                        <div>
+                            <h3>Notebook</h3>
+                            <span class="product-price">R$ 3.500,00</span>
+                        </div>
+
+                        <span class="product-stock">8 units</span>
+                    </div>
+
+                    <div class="product-actions">
+                        <button type="button" class="edit-button">Edit</button>
+
+                        <button type="button" class="delete-button">Delete</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>
