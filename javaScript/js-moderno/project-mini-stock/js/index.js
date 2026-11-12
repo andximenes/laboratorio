@@ -2,12 +2,21 @@
 
 //FORM
 const form = document.getElementById("productForm")
+const submitButton = form.querySelector('button[type="submit"]')
 
 //INPUTS
 const productName = document.getElementById("productName")
 const productPrice = document.getElementById("productPrice")
 const productQuantity = document.getElementById("productQuantity")
 const productsList = document.getElementById("productsList")
+const cancelButton = document.getElementById("cancelEdit")
+
+//DASHBOARD
+const totalProducts = document.getElementById("totalProducts")
+const totalStockValue = document.getElementById("totalStockValue")
+
+//CAMPO DE PESQUISA
+const searchProduct = document.getElementById("searchProduct")
 
 productName.oninput = () => {
    productName.value = removeNumbers(productName.value)
@@ -31,15 +40,40 @@ productQuantity.oninput = () => {
     productQuantity.value = removeLetters(productQuantity.value)
 }
 
+searchProduct.oninput = () => {
+    renderProducts()
+}
+
 
 //PRODUCTS
-let products = []
+let products = [
+    {
+        id: 1,
+        name: "Keyboard",
+        price: 200,
+        quantity: 10
+    },
+    {
+        id: 2,
+        name: "Mouse",
+        price: 45,
+        quantity: 10
+    },
+    {
+        id: 3,
+        name: "Monitor",
+        price: 1200,
+        quantity: 30
+    }
+]
 
 //NEXT ID
 let nextId = 1
 
-//CLASS
+//EDIT ID
+let editingId = null
 
+//CLASS
 class Product {
     constructor(id, name, price, quantity) {
         this.id = id
@@ -50,67 +84,100 @@ class Product {
     }
 }
 
-
 form.onsubmit = (event) => {
     event.preventDefault()
-    
-    //Capturar nome do do produto
+
+    // CAPTURAR O NOME
     const name = productName.value.trim()
 
-    if(name === "")  {
-        alert("The field Product name cannot be empty")
+    if (name === "") {
+        alert("Product name cannot be empty")
         productName.focus()
         return
     }
 
-    //Converter o preço para número
+    // CONVERTER O PREÇO
     const cleanPrice = removeLetters(productPrice.value)
-    const price = Number(cleanPrice) /100
+    const price = Number(cleanPrice) / 100
 
-    if(!Number.isFinite(price) || price <= 0) {
-        alert("Enter a valide price")
+    if (!Number.isFinite(price) || price <= 0) {
+        alert("Enter a valid price")
         productPrice.focus()
         return
     }
 
-    //Converter a quantidade para número
+    // CONVERTER A QUANTIDADE
     const quantity = Number(productQuantity.value)
 
-     if(!Number.isFinite(quantity) || quantity <= 0) {
-        alert("Quantity most be above zero")
+    if (
+        productQuantity.value.trim() === "" ||
+        !Number.isInteger(quantity) ||
+        quantity < 0
+    ) {
+        alert("Enter a valid quantity")
         productQuantity.focus()
         return
     }
 
-    //Criar o objeto newProduct
-
-    const newProduct = new Product(nextId, name, price, quantity)
-
-    //Verifica se o produto já foi cadatrado
-
+    // ****VERIFICAR DUPLICIDADE****
     const sameProduct = products.some((product) => {
-        return product.name.toLowerCase() === newProduct.name.toLowerCase()
-        
+        return (
+            product.name.toLowerCase() === name.toLowerCase() &&
+            product.id !== editingId
+        )
     })
 
-    if(!sameProduct) {
-        //Adicionar ao array de forma imutável
-        products = [...products, newProduct]
-
-        nextId += 1
-
-        form.reset() 
-
-    } else {
+    if (sameProduct) {
         alert("Product already registered")
-
         productName.focus()
         return
     }
 
+    // ****EDITAR OU CADASTRAR****
+    if (editingId !== null) {
+
+        products = products.map((product) => {
+
+            if (product.id === editingId) {
+                return {
+                    ...product,
+                    name,
+                    price,
+                    quantity
+                }
+            }
+
+            return product
+        })
+
+        editingId = null
+
+    } else {
+
+        const newProduct = new Product(
+            nextId,
+            name,
+            price,
+            quantity
+        )
+
+        products = [...products, newProduct]
+
+        nextId += 1
+    }
+
+    // ATUALIZAR A INTERFACE
+    form.reset()
+
+    editingId = null
+    
+    submitButton.textContent = "Register Product"
+
+    cancelButton.hidden = true
+
     renderProducts()
 
-    console.log(products)    
+    console.log(products)
 }
 
 
@@ -126,9 +193,15 @@ function removeLetters(product) {
 function renderProducts() {
     productsList.replaceChildren() //Remove todos os elementos que estiverem dentro da <ul> - replaceChildren() não apaga os produtos do array. Ele limpa somente os elementos HTML da lista.
 
-    products.forEach((product) => {
-        showProduct(product)
+    const search = searchProduct.value.trim().toLowerCase()
+
+    const filteredProducts = products.filter((product) => {
+        return product.name.toLocaleLowerCase().includes(search)
     })
+
+    filteredProducts.forEach(showProduct)
+
+    updateDashboard()
 }
 
 function showProduct(product) {
@@ -143,13 +216,20 @@ function showProduct(product) {
     const name = document.createElement("h3")
     name.textContent = product.name
 
-    const productPrice = document.createElement("span")
-    productPrice.textContent = product.price
-    productPrice.classList.add("product-price")
+    const priceSapan = document.createElement("span")
+    priceSapan.textContent = product.price.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
+    priceSapan.classList.add("product-price")
 
     const productStock = document.createElement("span")
-    productStock.classList.add("product-stock")
-    productStock.textContent = product.quantity
+    if (product.quantity === 0) {
+        productStock.textContent = "Out of stock"
+        productStock.classList.add("out-of-stock")
+    } else {
+        productStock.textContent = `${product.quantity} units`
+    }
 
     const productActions = document.createElement("div")
     productActions.classList.add("product-actions")
@@ -161,13 +241,57 @@ function showProduct(product) {
 
     const deleteButton = document.createElement("button")
     deleteButton.textContent = "Delete"
-    deleteButton.type = "Button"
+    deleteButton.type = "button"
     deleteButton.classList.add("delete-button")
+
+    //BUTTON ACTIONS
+    // DELETE
+    deleteButton.onclick = () => {
+        products = products.filter((item) => { //mantenha todos os produtos cujo ID seja diferente do ID do produto que queremos excluir.
+            return item.id !== product.id
+        })
+
+        renderProducts()
+    }
+
+    //EDIT
+    editButton.onclick = () => {
+        //prepara o formulário para a edição capiturando os valores
+        editingId = product.id
+
+        productName.value = product.name
+
+        productPrice.value = product.price.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        console.log(priceSapan.value)
+
+        productQuantity.value = product.quantity
+
+        submitButton.textContent = "Save changes"
+
+        cancelButton.hidden = false
+
+        productName.focus()
+    }
+
+    //CANCEL EDITING
+    cancelButton.onclick = () => {
+        editingId = null
+
+        form.reset()
+
+        submitButton.textContent = "Register product"
+
+        cancelButton.hidden = true
+    }
 
     //APPENDS
     div.append(
         name, 
-        productPrice
+        priceSapan
     )
 
     productInfo.append(
@@ -188,3 +312,25 @@ function showProduct(product) {
 
     productsList.append(li)
 }
+
+//UPDATE DASHBOARD
+function updateDashboard() {
+    //Quantidade de produtos cadastrados
+    totalProducts.textContent = products.length
+
+    //Valor total dos produtos no estoque
+
+    const stockValue = products.reduce((accumulator, product) => {
+        return accumulator + (product.price * product.quantity)
+    }, 0)
+
+    //formatar o valor em reais
+    totalStockValue.textContent = stockValue.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
+}
+
+
+//INICIALIZAÇÃO
+renderProducts()

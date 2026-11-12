@@ -55,6 +55,7 @@
                 </div>
 
                 <button type="submit">Register product</button>
+                <button type="button" id="cancelEdit" hidden>Cancel Editing</button>
             </form>
 
         </section>
@@ -63,24 +64,13 @@
         <section class="inventory">
             <h2>registered products</h2>
 
-            <ul id="productsList">
-                <!-- <li class="product-card">
-                    <div class="product-info">
-                        <div>
-                            <h3>Notebook</h3>
-                            <span class="product-price">R$ 3.500,00</span>
-                        </div>
-
-                        <span class="product-stock">8 units</span>
-                    </div>
-
-                    <div class="product-actions">
-                        <button type="button" class="edit-button">Edit</button>
-
-                        <button type="button" class="delete-button">Delete</button>
-                    </div>
-                </li> -->
-            </ul>
+            <!-- CAMPO DE PESQUISA -->
+            <div class="search-box">
+                <label for="searchProduct">Search product</label>
+                <input type="text" id="searchProduct" placeholder="Search by product name...">
+            </div>
+            
+            <ul id="productsList"></ul>
         </section>
     </main>
 
