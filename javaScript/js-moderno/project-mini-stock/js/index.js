@@ -1,10 +1,24 @@
 "use strict"
 
+//NEXT ID
+
+let nextId = 1
+
+//EDIT ID
+
+let editingId = null
+
+//SAVE THE CURRENT FILTER
+
+let currentFilter = "all"
+
 //FORM
+
 const form = document.getElementById("productForm")
 const submitButton = form.querySelector('button[type="submit"]')
 
 //INPUTS
+
 const productName = document.getElementById("productName")
 const productPrice = document.getElementById("productPrice")
 const productQuantity = document.getElementById("productQuantity")
@@ -12,11 +26,20 @@ const productsList = document.getElementById("productsList")
 const cancelButton = document.getElementById("cancelEdit")
 
 //DASHBOARD
+
 const totalProducts = document.getElementById("totalProducts")
 const totalStockValue = document.getElementById("totalStockValue")
 
 //CAMPO DE PESQUISA
+
 const searchProduct = document.getElementById("searchProduct")
+
+//FILTER BUTTONS
+
+const filterButtons = document.querySelectorAll(".stock-filters button")
+
+
+//EVENTS
 
 productName.oninput = () => {
    productName.value = removeNumbers(productName.value)
@@ -44,8 +67,17 @@ searchProduct.oninput = () => {
     renderProducts()
 }
 
+filterButtons.forEach((button) => {
+    button.onclick = () => {
+        currentFilter = button.dataset.filter
+
+        renderProducts()
+    }
+})
+
 
 //PRODUCTS
+
 let products = [
     {
         id: 1,
@@ -67,13 +99,9 @@ let products = [
     }
 ]
 
-//NEXT ID
-let nextId = 1
-
-//EDIT ID
-let editingId = null
 
 //CLASS
+
 class Product {
     constructor(id, name, price, quantity) {
         this.id = id
@@ -84,10 +112,14 @@ class Product {
     }
 }
 
+
+//FORM
+
 form.onsubmit = (event) => {
     event.preventDefault()
 
     // CAPTURAR O NOME
+
     const name = productName.value.trim()
 
     if (name === "") {
@@ -97,6 +129,7 @@ form.onsubmit = (event) => {
     }
 
     // CONVERTER O PREÇO
+
     const cleanPrice = removeLetters(productPrice.value)
     const price = Number(cleanPrice) / 100
 
@@ -107,6 +140,7 @@ form.onsubmit = (event) => {
     }
 
     // CONVERTER A QUANTIDADE
+
     const quantity = Number(productQuantity.value)
 
     if (
@@ -120,6 +154,7 @@ form.onsubmit = (event) => {
     }
 
     // ****VERIFICAR DUPLICIDADE****
+
     const sameProduct = products.some((product) => {
         return (
             product.name.toLowerCase() === name.toLowerCase() &&
@@ -134,7 +169,10 @@ form.onsubmit = (event) => {
     }
 
     // ****EDITAR OU CADASTRAR****
+
     if (editingId !== null) {
+
+        //EDIT PART
 
         products = products.map((product) => {
 
@@ -154,6 +192,8 @@ form.onsubmit = (event) => {
 
     } else {
 
+        //REGISTER
+
         const newProduct = new Product(
             nextId,
             name,
@@ -167,6 +207,7 @@ form.onsubmit = (event) => {
     }
 
     // ATUALIZAR A INTERFACE
+
     form.reset()
 
     editingId = null
@@ -196,7 +237,20 @@ function renderProducts() {
     const search = searchProduct.value.trim().toLowerCase()
 
     const filteredProducts = products.filter((product) => {
-        return product.name.toLocaleLowerCase().includes(search)
+        //Verifica o nome pesquisado
+        const matchesSearch = product.name.toLocaleLowerCase().includes(search)
+
+        //verifica o filtro selecionado
+        if(currentFilter === "available") {
+            return matchesSearch && product.quantity > 0
+        }
+
+        if(currentFilter === "out") {
+            return matchesSearch && product.quantity === 0
+        }
+
+        //Se for all mostra todos que correspondem à pesquisa
+        return matchesSearch
     })
 
     filteredProducts.forEach(showProduct)
@@ -256,7 +310,9 @@ function showProduct(product) {
 
     //EDIT
     editButton.onclick = () => {
+
         //prepara o formulário para a edição capiturando os valores
+
         editingId = product.id
 
         productName.value = product.name
@@ -265,8 +321,6 @@ function showProduct(product) {
             style: "currency",
             currency: "BRL"
         })
-
-        console.log(priceSapan.value)
 
         productQuantity.value = product.quantity
 
@@ -278,7 +332,9 @@ function showProduct(product) {
     }
 
     //CANCEL EDITING
+
     cancelButton.onclick = () => {
+
         editingId = null
 
         form.reset()
@@ -315,7 +371,9 @@ function showProduct(product) {
 
 //UPDATE DASHBOARD
 function updateDashboard() {
+
     //Quantidade de produtos cadastrados
+
     totalProducts.textContent = products.length
 
     //Valor total dos produtos no estoque
@@ -325,6 +383,7 @@ function updateDashboard() {
     }, 0)
 
     //formatar o valor em reais
+    
     totalStockValue.textContent = stockValue.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
